@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   constructor(public service:AccountService) { }
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    //this.getCurrentUser();
   }
 
   login()
@@ -40,18 +40,18 @@ export class NavComponent implements OnInit {
     this.loggedIn=false;
   }
 
-  getCurrentUser()
-  {
-    this.service.currentUser$.subscribe(
-      user=>
-      {
-        this.loggedIn=!!user; //object turns into boolean
-      },
-      error=>
-      {
-        console.log(error);
-      }
-    )
-  }
+  // getCurrentUser()
+  // {
+  //   this.service.currentUser$.subscribe(
+  //     user=>
+  //     {
+  //       this.loggedIn=!!user; //object turns into boolean
+  //     },
+  //     error=>
+  //     {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
 
 }

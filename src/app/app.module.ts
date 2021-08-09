@@ -7,13 +7,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DisplayuserComponent } from './displayuser/displayuser.component';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown'; 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SubjectComponent } from './subject/subject.component';
+import { BehaviourSubjectComponent } from './behaviour-subject/behaviour-subject.component';
+import { ReplaySubjectComponent } from './replay-subject/replay-subject.component';
+import { AyncSubjectComponent } from './aync-subject/aync-subject.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayuserComponent,
-    NavComponent
+    NavComponent,
+    SubjectComponent,
+    BehaviourSubjectComponent,
+    ReplaySubjectComponent,
+    AyncSubjectComponent
   ],
   imports: [
     BrowserModule,

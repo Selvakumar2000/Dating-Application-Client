@@ -16,14 +16,14 @@ export class DisplayuserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDetails();
-    this.setCurrentUser();
+    //this.setCurrentUser();
   }
 
-  setCurrentUser()
-  {
-    const user:User=JSON.parse(localStorage.getItem('user'));
-    this.service.setCurrentUser(user);
-  }
+  // setCurrentUser()
+  // {
+  //   const user:User=JSON.parse(localStorage.getItem('user'));//converts JSON into JavaScript Object
+  //   this.service.setCurrentUser(user);
+  // }
   getUserDetails()
   {
     this.http.get('https://localhost:5001/api/users').subscribe(
