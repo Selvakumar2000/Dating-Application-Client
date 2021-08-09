@@ -11,7 +11,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SubjectComponent } from './subject/subject.component';
 import { BehaviourSubjectComponent } from './behaviour-subject/behaviour-subject.component';
 import { ReplaySubjectComponent } from './replay-subject/replay-subject.component';
-import { AyncSubjectComponent } from './aync-subject/aync-subject.component'; 
+import { AyncSubjectComponent } from './aync-subject/aync-subject.component';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AyncSubjectComponent } from './aync-subject/aync-subject.component';
     SubjectComponent,
     BehaviourSubjectComponent,
     ReplaySubjectComponent,
-    AyncSubjectComponent
+    AyncSubjectComponent,
+    HomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,7 @@ import { AyncSubjectComponent } from './aync-subject/aync-subject.component';
     FormsModule,
     BsDropdownModule.forRoot(),
   ],
-  providers: [],
+  providers: [NavComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
