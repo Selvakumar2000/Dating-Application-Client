@@ -15,22 +15,22 @@ export class AccountService {
 
   constructor(public http:HttpClient) { }
 
-  // register(model:any)
-  // {
-  //   //return this.http.post(this.baseURL+'account/Login',model);
-  //   return this.http.post(this.baseURL+'account/Register',model).pipe(
-  //     map((response:User)=>   /* "strict":false to avoid error*/
-  //     {
-  //       const user=response;
-  //       if(user)
-  //       {
-  //         //convert the object data into the JSON format   setItem(key,value);
-  //         localStorage.setItem('user',JSON.stringify(user));
-  //         this.currentUserSource.next(user);
-  //       }
-  //     })
-  //   );
-  // }
+  register(model:any)
+  {
+    //return this.http.post(this.baseURL+'account/Login',model);
+    return this.http.post(this.baseURL+'account/Register',model).pipe(
+      map((response:User)=>   /* "strict":false to avoid error*/
+      {
+        const user=response;
+        if(user)
+        {
+          //convert the object data into the JSON format   setItem(key,value);
+          localStorage.setItem('user',JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+      })
+    );
+  }
 
   login(model:any)
   {
