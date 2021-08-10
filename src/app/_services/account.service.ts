@@ -19,9 +19,8 @@ export class AccountService {
   {
     //return this.http.post(this.baseURL+'account/Login',model);
     return this.http.post(this.baseURL+'account/Register',model).pipe(
-      map((response:User)=>   /* "strict":false to avoid error*/
+      map((user:User)=>   /* "strict":false to avoid error*/
       {
-        const user=response;
         if(user)
         {
           //convert the object data into the JSON format   setItem(key,value);

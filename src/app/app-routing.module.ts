@@ -10,17 +10,13 @@ import { MessagesComponent } from './messages/messages.component';
 const routes: Routes = [
   {path:'', component:HomeComponent},
   /*instead of putting this line **canActivate:[AuthGuard]** into every path ,we can use runGuardAlways...*/
-  
-  /*
-
-  */
   {
     path:'',
     runGuardsAndResolvers:'always',
     canActivate:[AuthGuard],
     children:
     [
-      {path:'members', component:MemberListComponent,canActivate:[AuthGuard]},
+      {path:'members', component:MemberListComponent},
       {path:'members/:id', component:MemberDetailComponent},
       {path:'lists', component:ListsComponent},
       {path:'messages', component:MessagesComponent},
@@ -30,7 +26,7 @@ const routes: Routes = [
   // {path:'members/:id', component:MemberDetailComponent},
   // {path:'lists', component:ListsComponent},
   // {path:'messages', component:MessagesComponent},
-  {path:'**', component:HomeComponent,pathMatch:'full'},
+     {path:'**', component:HomeComponent,pathMatch:'full'},
 ];
 
 @NgModule({
