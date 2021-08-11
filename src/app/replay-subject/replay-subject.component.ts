@@ -17,12 +17,11 @@ export class ReplaySubjectComponent implements OnInit {
   constructor(private service:ReplaySubjectService) {
     this.service.data.next(100);
     this.service.data.next(200);
+    this.service.data.next(300);
+    this.service.data.next(400);
+    this.service.data.next(500);
+    this.service.data.next(600);
     this.service.data.subscribe(e => this.data.push(e));
-    // this.service.data.next(300);
-    // this.service.data.next(400);
-    // this.service.data.next(500);
-    // this.service.data.next(600);
-    //this.service.data.subscribe(e => this.data.push(e));
     
    }
 

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/user.model';
-import { AccountService } from '../_services/account.service';
-
+//import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-displayuser',
@@ -11,17 +9,10 @@ import { AccountService } from '../_services/account.service';
 export class DisplayuserComponent implements OnInit {
 
   //users:any;
-  constructor(/*public http:HttpClient,*/private service:AccountService) { }
+  constructor(/*public http:HttpClient*/) { }
 
   ngOnInit(): void {
     //this.getUserDetails();
-    this.setCurrentUser();
-  }
-
-  setCurrentUser()
-  {
-    const user:User=JSON.parse(localStorage.getItem('user'));//converts JSON into JavaScript Object
-    this.service.setCurrentUser(user);
   }
 
   // getUserDetails()

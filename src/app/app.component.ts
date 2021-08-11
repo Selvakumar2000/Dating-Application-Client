@@ -16,9 +16,9 @@ export class AppComponent {
   {
     this.setCurrentUser();
   }
+
   setCurrentUser() {
     const user: User = JSON.parse(localStorage.getItem('user'));
     this.service.setCurrentUser(user);
   }
-
 }

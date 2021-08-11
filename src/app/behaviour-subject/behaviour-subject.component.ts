@@ -23,6 +23,7 @@ export class BehaviourSubjectComponent implements OnInit {
     this.service.data.next(2);
     this.service.data.subscribe(e=>this.data=e); //get the current value
     this.service.data.next(3); //whenever we emit a new value,it will be subscribed
+    this.service.data.next(21);
   }
 
   sendData()
