@@ -5,7 +5,7 @@ import { ReplaySubjectService } from './replay-subject.service';
   selector: 'app-replay-subject',
   template: `
     <h1>Using Replay Subject</h1>
-    <!-- <p>{{data | json}}</p> -->
+    <p>{{data | json}}</p>
   `,
   styles: [
   ]

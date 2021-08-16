@@ -12,7 +12,6 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-
   constructor(public router:Router,public toastr:ToastrService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -34,7 +33,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 //throw modalStateErrors; //why? to display the errors in a list manner below the form
 //modalStateErrors -->it is an array of array,so we need to flatten this for easy iterating  
-                throw modalStateErrors.flat();
+                throw modalStateErrors.flat(); //available in es2019
               }
               else
               {

@@ -6,6 +6,6 @@ import { ReplaySubject } from 'rxjs';
 })
 export class ReplaySubjectService {
 
-  data=new ReplaySubject<number>(3); ///i want to store last 5 values
+  data=new ReplaySubject<number>(5); ///i want to store last 5 values
   constructor() { }
 }

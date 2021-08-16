@@ -10,30 +10,58 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 
+// const routes: Routes = [
+//   {path:'', component:HomeComponent},
+//   /*instead of putting this line **canActivate:[AuthGuard]** into every path ,we can use runGuardAlways...*/
+//   {
+//     path:'',
+//     runGuardsAndResolvers:'always',
+//     canActivate:[AuthGuard],
+//     children:
+//     [
+//       {path:'members', component:MemberListComponent},
+//       {path:'members/:id', component:MemberDetailComponent},
+//       {path:'lists', component:MemberListComponent},
+//       {path:'messages', component:MessagesComponent},
+//     ]
+//   },
+//   // {path:'members', component:MemberListComponent,canActivate:[AuthGuard]},
+//   // {path:'members/:id', component:MemberDetailComponent},
+//   // {path:'lists', component:ListsComponent},
+//   // {path:'messages', component:MessagesComponent},
+//      {path:'errors',component:TestErrorsComponent},  
+//      {path:'not-found',component:NotFoundComponent}, 
+//      {path:'server-error',component:ServerErrorComponent}, 
+//      {path:'**', component:NotFoundComponent,pathMatch:'full'},
+// ];
+
+
+
 const routes: Routes = [
-  {path:'', component:HomeComponent},
-  /*instead of putting this line **canActivate:[AuthGuard]** into every path ,we can use runGuardAlways...*/
+  {path: '', component: HomeComponent},
   {
-    path:'',
-    runGuardsAndResolvers:'always',
-    canActivate:[AuthGuard],
-    children:
-    [
-      {path:'members', component:MemberListComponent},
-      {path:'members/:id', component:MemberDetailComponent},
-      {path:'lists', component:ListsComponent},
-      {path:'messages', component:MessagesComponent},
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'members', component: MemberListComponent, canActivate: [AuthGuard]},
+      {path: 'members/:username', component: MemberDetailComponent},
+      {path: 'lists', component: ListsComponent},
+      {path: 'messages', component: MessagesComponent},
     ]
   },
-  // {path:'members', component:MemberListComponent,canActivate:[AuthGuard]},
-  // {path:'members/:id', component:MemberDetailComponent},
-  // {path:'lists', component:ListsComponent},
-  // {path:'messages', component:MessagesComponent},
-     {path:'errors',component:TestErrorsComponent},  
-     {path:'not-found',component:NotFoundComponent}, 
-     {path:'server-error',component:ServerErrorComponent}, 
-     {path:'**', component:NotFoundComponent,pathMatch:'full'},
+  {path: 'errors', component: TestErrorsComponent},
+  {path: 'not-found', component: NotFoundComponent},
+  {path: 'server-error', component: ServerErrorComponent},
+  {path: '**', component: NotFoundComponent, pathMatch: 'full'},
 ];
+
+
+
+
+
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
