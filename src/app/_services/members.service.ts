@@ -16,13 +16,13 @@ export class MembersService {
 
   getMembers()
   {
-    if(this.members.length>0) return of(this.members);
+    if(this.members.length>0) return of(this.members); //returns observable
     //our api methods are authorized,we need to send the token aswell
     return this.http.get<Member[]>(this.baseUrl+'users').pipe(          //get<> provide typesafety
       map(members=>
         {
           this.members=members;
-          return members;
+          return members; //returns observable
         })
     ); 
   }

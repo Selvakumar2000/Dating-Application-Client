@@ -6,14 +6,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class BusyService {
 
-  busyRequestCount=0;
+  busyRequestCount=0; //inc. and dec. each time when we make a request and a request completes
 
   constructor(public spinnerService:NgxSpinnerService) { }
 
   busy()
   {
     this.busyRequestCount++;
-    this.spinnerService.show(undefined,
+    this.spinnerService.show(undefined,  //show(spinner_name,configuration)
       {
         type:'line-scale-party',
         bdColor:'rgba(255,255,255,0)',

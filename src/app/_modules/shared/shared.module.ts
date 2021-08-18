@@ -5,11 +5,13 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import{HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot(
      {
@@ -21,6 +23,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule
   ],
   exports:[
+    HttpClientModule,
     BsDropdownModule,
     ToastrModule,
     NgxGalleryModule,

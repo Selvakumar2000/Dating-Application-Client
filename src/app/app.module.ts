@@ -25,7 +25,6 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { TypescriptBasicsComponent } from './typescript-basics/typescript-basics.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
-import{HttpClientModule} from '@angular/common/http';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
@@ -57,7 +56,6 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    HttpClientModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
