@@ -6,6 +6,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import{HttpClientModule} from '@angular/common/http';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [],
@@ -20,7 +21,8 @@ import{HttpClientModule} from '@angular/common/http';
     ),
     TabsModule.forRoot(),
     NgxGalleryModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FileUploadModule,
   ],
   exports:[
     HttpClientModule,
@@ -28,7 +30,8 @@ import{HttpClientModule} from '@angular/common/http';
     ToastrModule,
     NgxGalleryModule,
     TabsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FileUploadModule,
   ]
 })
 export class SharedModule { }
