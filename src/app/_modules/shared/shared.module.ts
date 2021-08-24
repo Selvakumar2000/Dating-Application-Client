@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import{HttpClientModule} from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
 import{BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [],
@@ -25,6 +26,7 @@ import{BsDatepickerModule} from 'ngx-bootstrap/datepicker';
     NgxSpinnerModule,
     FileUploadModule,
     BsDatepickerModule.forRoot(),
+    PaginationModule.forRoot(),
   ],
   exports:[
     HttpClientModule,
@@ -34,7 +36,8 @@ import{BsDatepickerModule} from 'ngx-bootstrap/datepicker';
     TabsModule,
     NgxSpinnerModule,
     FileUploadModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    PaginationModule,
   ]
 })
 export class SharedModule { }
