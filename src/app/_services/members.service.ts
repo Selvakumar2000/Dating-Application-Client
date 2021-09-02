@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
+import { UserParams } from '../_models/userParams';
 
 @Injectable({
   providedIn: 'root'
@@ -13,36 +14,44 @@ export class MembersService {
 
   baseUrl=environment.apiUrl;
   members:Member[]=[];
-  paginatedResult:PaginatedResult<Member[]>=new PaginatedResult<Member[]>();
+  
 
   constructor(public http:HttpClient) { }
 
-  getMembers(page?:number,itemsPerPage?:number)
+  getMembers(userParams : UserParams)
+  {
+    let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+
+    params=params.append('minAge', userParams.minAge.toString());
+    params=params.append('maxAge', userParams.maxAge.toString());
+    params=params.append('gender', userParams.gender);
+
+    //adding observe --> gets the full response not only body response.
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users',params);
+  }
+
+  private getPaginatedResult<T>(url: string, params: HttpParams) {
+    const paginatedResult:PaginatedResult<T>=new PaginatedResult<T>();
+    return this.http.get<T>(url, { observe: 'response', params }).pipe(
+      map(
+        response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') !== null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+    );
+  }
+
+  private getPaginationHeaders(pageNumber : number, pageSize : number)
   {
     //have the ability to(serialize parameters) add parameters into our query string
     let params=new HttpParams(); 
+    params=params.append('pageNumber',pageNumber.toString());
+    params=params.append('pageSize',pageSize.toString());
 
-    if(page!==null && itemsPerPage!==null)
-    {
-      params=params.append('pageNumber',page.toString());
-      params=params.append('pageSize',itemsPerPage.toString());
-    }
-
-
-    //our api methods are authorized,we need to send the token aswell
-    //adding observe --> gets the full response not only body response.
-    return this.http.get<Member[]>(this.baseUrl+'users',{observe:'response',params}).pipe(   //get<> provide typesafety
-     map(
-       response=>
-      {
-        this.paginatedResult.result=response.body;
-        if(response.headers.get('Pagination') !==null)
-        {
-          this.paginatedResult.pagination=JSON.parse(response.headers.get('Pagination'));
-        }
-        return this.paginatedResult;
-      })
-    );
+    return params;
   }
 
   getMember(username:string)
