@@ -9,6 +9,7 @@ import{HttpClientModule} from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
 import{BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     FileUploadModule,
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
   ],
   exports:[
     HttpClientModule,

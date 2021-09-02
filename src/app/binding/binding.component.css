@@ -1,0 +1,20 @@
+.alignment
+{
+    color:blue;
+    text-align:center;
+}
+
+.text-success
+{
+    color:green;
+}
+
+.text-danger
+{
+    color:red;
+}
+
+.text-special
+{
+    font-style:italic;
+}

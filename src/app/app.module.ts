@@ -30,6 +30,11 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
+import { BindingComponent } from './binding/binding.component';
+import { BootstrapComponent } from './bootstrap/bootstrap.component';
+import { AngularFeaturesComponent } from './angular-features/angular-features.component';
+import { TdfFormsComponent } from './tdf-forms/tdf-forms.component';
+import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +59,12 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
     MemberEditComponent,
     PhotoEditorComponent,
     TextInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    BindingComponent,
+    BootstrapComponent,
+    AngularFeaturesComponent,
+    TdfFormsComponent,
+    ReactiveFormsComponent
   ],
   imports: [
     BrowserModule,

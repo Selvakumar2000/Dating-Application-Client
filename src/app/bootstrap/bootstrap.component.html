@@ -1,0 +1,72 @@
+<div style="max-width:1200px;margin:0 auto;padding:10px;">
+    <h1>Containers</h1>
+    <div class="container c">
+        <h1>Fixed Container - "container"</h1>
+        <p>Has a fixed width, which changes at certain breakpoints</p>
+        <p>Has a builtin padding of 15px at the way around</p>
+    </div>
+    <div class="container-fluid cf">
+        <h1>Fluid Container - "container-fluid"</h1>
+        <p>Has a fixed width, which stretches to 100% of it's parent element</p>
+        <p>Has a builtin padding of 15px at the way around</p>
+    </div>
+</div>
+
+<!--To Achieve Grid System
+1.container - container or container-fluid
+2.row       - row
+3.column    - col-{size}-{number}   
+    size   -> size of the view port which we are targeting (xs,sm,md,lg)
+              #xs -> < 768px  #sm -> >=768px  #md -> >=992px #lg -> >=1200px
+    number -> number of columns you want (bootstrap provice 12 columns per row) 
+-->
+<div style="max-width: 1200px; margin: 0 auto; padding: 10px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-8 content">
+                <h1>Content</h1>
+                <p><strong>Very Small Screen:</strong> 12 Columns</p>
+                <p><strong>Small Screen:</strong> 6 Columns</p>
+                <p><strong>Medium Screen:</strong> 8 Columns</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 sidebar">
+                <h1>Side Bar</h1>
+                <p><strong>Very Small Screen:</strong> 12 Columns</p>
+                <p><strong>Small Screen:</strong> 6 Columns</p>
+                <p><strong>Medium Screen:</strong> 4 Columns</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 1</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 2</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 3</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 4</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 5</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 6</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 7</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 8</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 9</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 10</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 11</div>
+            <div class="col-6 col-sm-4 col-md-2 col-lg-1 image">Image 12</div>
+        </div>
+        <!--Offset Demo-->
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-8 offset-2 col-md-4 offset-md-0  image">Image 1</div>
+            <div class="col-12  col-md-4  image">Image 2</div>
+            <div class="col-12  col-md-4  image">Image 3</div>
+        </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-12  col-md-8 offset-md-2  image">Image 1</div>
+            <div class="col-12  col-md-10 offset-md-1 image">Image 2</div>
+            <div class="col-12  col-md-12  image">Image 3</div>
+        </div>
+        <!--push and pull demo not working-->
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-12  col-md-6  col-lg-8 col-lg-push-4  image">Content Area</div>
+            <div class="col-12  col-md-6  col-lg-4 col-lg-pull-8  image">Sidebar Area</div>
+        </div>
+    </div>
+</div>
+
+

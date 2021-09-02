@@ -7,7 +7,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AccountService } from '../_services/account.service';
-
 import { take } from 'rxjs/operators';
 import { User } from '../_models/User';
 

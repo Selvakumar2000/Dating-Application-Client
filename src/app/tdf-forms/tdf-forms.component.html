@@ -1,0 +1,130 @@
+<div>
+    <div class="container">
+        <h1 style="text-align: center;">Department Enrollment Form</h1>
+    <form #studentForm = "ngForm" autocomplete="off" novalidate (ngSubmit) = "onSubmit(studentForm)">
+        <div class="form-group">
+            <label>Name</label>
+            <input required 
+                type="text" 
+                #name = "ngModel" 
+                class="form-control" 
+                [class.is-invalid] = "name.invalid && name.touched"
+                name="username" 
+                [(ngModel)] = "student.username "
+            >
+            <small class="text-danger" [class.d-none] = "name.valid || name.untouched">
+                Name is required
+            </small>
+        </div>
+        <!-- {{"Touched?  " + name.touched +"  Dirty?  "+ name.dirty + "  valid?   "+ name.valid}} -->
+
+        <div class="form-group">
+            <label>Email</label>
+            <input required 
+                type="email" 
+                #email = "ngModel"
+                class="form-control" 
+                name="email" 
+                [(ngModel)] = "student.email"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label>Gender</label>
+
+            <div class="form-check">
+                <input
+                    class="form-check-input" 
+                    type="radio" 
+                    value="male"
+                    name="gender" 
+                    [(ngModel)]="student.gender"
+                >
+                <label class="form-check-label">Male</label>
+            </div>
+
+            <div class="form-check">
+                <input
+                    class="form-check-input" 
+                    type="radio" 
+                    value="female"
+                    name="gender" 
+                    [(ngModel)]="student.gender"
+                >
+                <label class="form-check-label">Female</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input required 
+                type="tel" 
+                #phone = "ngModel"
+                class="form-control" 
+                [class.is-invalid] = "phone.invalid && phone.touched"
+                name="phone" 
+                pattern="^\d{10}$"
+                [(ngModel)]="student.phone"
+            >
+            <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">
+                Phone Number is required and must be 10 Digits
+            </small>
+            <!-- <div *ngIf = "phone.errors && (phone.invalid || phone.touched)">
+                <small class="text-danger" *ngIf = "phone.errors.required">Phone Number is required</small>
+                <small class="text-danger" *ngIf = "phone.errors.pattern">Phone Number must be 10 digits</small>
+            </div> -->
+        </div>
+
+        <!-- <div ngModelGroup="address">
+            <div class="form-group">
+                <label>Street</label>
+                <input type="text" class="form-control" name="street" ngModel>
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" name="city" ngModel>
+            </div>
+            <div class="form-group">
+                <label>State</label>
+                <input type="text" class="form-control" name="state" ngModel>
+            </div>
+            <div class="form-group">
+                <label>Pin Code</label>
+                <input type="text" class="form-control" name="pinCode" ngModel>
+            </div>
+        </div> -->
+
+        <div class="form-group">
+            <select #course = "ngModel" class="custom-select" 
+                   [class.is-invalid] = "courseHasError && course.touched"
+                   name="department" [(ngModel)] = "student.department"
+                   (blur) = "validateCourse(course.value)" (change) = "validateCourse(course.value)"
+            >
+                <option value = " " selected>Choose Department</option>
+                <option *ngFor = "let department of departments">{{ department }}</option>
+            </select>
+            <small class="text-danger" [class.d-none] = "!courseHasError|| course.untouched">
+                Please select the course
+            </small>
+        </div>
+
+        <div class="form-check mb-3">
+            <input 
+                class="form-check-input" 
+                type="checkbox" 
+                name="agree" 
+                [(ngModel)]="student.agree"
+            >
+            <label>Information Provided here is true</label>
+        </div>
+
+        <div class="text-center">
+            <button [disabled] = "studentForm.form.invalid" class="btn btn-primary" style="width: 200px;" type="submit">Submit Form</button>
+        </div>
+
+    </form>
+    <br>
+    {{ studentForm.value | json }} <br>
+    {{ student | json }}
+    </div>
+</div>

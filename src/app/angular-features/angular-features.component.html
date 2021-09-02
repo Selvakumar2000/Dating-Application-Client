@@ -1,0 +1,86 @@
+<div>
+    <div class="container">
+        <h1 style="text-align:center;margin-top:20px;color: darkgreen;">Structural Directive</h1>
+        <div class="row">
+            <div class="col-md-4" style="background-color: darkkhaki;">
+                <h2>*ngIf Directive</h2>
+                <!--Acieve if-else block-->
+                <h3 *ngIf="displayName else elseBlock">Mohamed Wasim</h3>
+                <ng-template #elseBlock><h3 #elseBlock>Selvakumar</h3></ng-template>
+                <!--Acieve if-else block in another way-->
+                <div *ngIf="displayName then thenBlock else elseBlock2"></div>
+                <ng-template #thenBlock><h3>Sindhuja</h3></ng-template>
+                <ng-template #elseBlock2><h3>Sharmi</h3></ng-template>
+                
+                <br>
+                
+                <h2>Component Interaction</h2>
+                <h2>Parent to Child Using @Input() Decorator</h2>
+                <h3>{{"Hello  " + name}}</h3>
+
+                <br>
+
+                <h2>Child to Parent Using @Output() Decorator</h2>
+                <!--sends child data to parent through button click-->
+                <button (click) = "fireEvent()">Send Event</button>
+
+                
+            </div>
+            <div class="col-md-4" style="background-color: rgb(5, 122, 158);">
+                <h2>ngSwitch Directive</h2>
+                <div [ngSwitch]="color">
+                    <div *ngSwitchCase = "'blue'" [style.color]="color"><h3> Picked Blue Colour</h3></div>
+                    <div *ngSwitchCase = "'red'" [style.color]="color">You Picked Red Colour</div>
+                    <div *ngSwitchCase = "'green'" [style.color]="color">You Picked Green Colour</div>
+                    <div *ngSwitchDefault>Pick Again</div>
+                </div>
+
+                <br>
+
+                <h2>Pipe in Angular</h2>
+                <!--For String-->
+                <h3>{{  myName | lowercase }}</h3>
+                <h3>{{  myName | uppercase }}</h3>
+                <h3>{{  myName | titlecase }}</h3>
+                <h3>{{  myName | slice:3:7 }}</h3>
+                <h3>{{  person| json }}</h3>
+                <!--For Number
+                1st number -> minimum number of integer digits
+                after .    -> minimum number of decimal digits
+                and - then -> maximum number of decimal digits-->
+
+                <h2>{{ 5.678 | number: '1.2-3'}}</h2> 
+                <h2>{{ 5.678 | number: '3.4-5'}}</h2>
+                <h2>{{ 5.678 | number: '3.1-2'}}</h2>
+                <h2>{{ 0.25 | percent }}</h2>
+                <h2>{{ 0.25 | currency }}</h2> <!--by default US currency-->
+                <h2>{{ 0.25 | currency: 'GBP' }}</h2>
+                <h2>{{ 0.25 | currency: 'INR' }}</h2>
+                <h2>{{ 0.25 | currency: 'INR' : 'code' }}</h2>
+                <!--For Dates-->
+                <h2>{{ date }}</h2>
+                <h2>{{ date | date }}</h2>
+                <h2>{{ date | date: 'short' }}</h2>
+                <h2>{{ date | date: 'shortDate' }}</h2>
+                <h2>{{ date | date: 'shortTime' }}</h2>
+            </div>
+            <div class="col-md-4" style="background-color: rgb(44, 129, 36);">
+                <h2>*ngFor Directive</h2> 
+<!--#using index we can get the index number 
+    #using first we can check whether the current value is first or not
+    #using last we can check whether the current value is last or not
+    #using odd we can check whether the current value is odd or not
+    #using even we can check whether the current value is even or not -->
+                <div *ngFor = "let color of colors; index as i; 
+                               first as f; last as l; 
+                               odd as o; even as e">
+                    <h3>
+                        {{i}} - {{color}}  isFirst? -> {{f}} isLast? -> {{l}} isOdd? -> {{o}} isEven -> {{e}}
+                    </h3>
+                    <hr>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

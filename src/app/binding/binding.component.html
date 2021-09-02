@@ -1,0 +1,118 @@
+<div>    
+    <div class="container" style="margin-top:20px">
+        <div class="row">
+            <h1 style="text-align: center;color: darkblue;">Interpolation</h1>
+            <div class="col-md-6" style="background-color: aquamarine;">
+                <h2>Things can do with interpolation</h2>
+                <h3>Welcome {{name}}</h3>
+                <h3>{{3+3}}</h3>
+                <h3>{{"selva" + "sharmi"}}</h3>
+                <h3>{{name.length}}</h3>
+                <h3>{{name.toUpperCase()}}</h3>
+                <h3>{{greetUser()}}</h3>
+                <h3>{{siteUrl}}</h3> 
+            </div>
+            <div class="col-md-6" style="background-color: rgb(228, 79, 248);">
+                <h2>Things can not do with interpolation</h2>
+                <h3>{{"Assigning is not possible. Ex: {{a=3+3}}"}}</h3>
+                <h3>{{"we cannot access the global variable. Ex: {{window.location.href}}"}}</h3> 
+            </div>
+        </div>
+    </div>
+</div> <br> <br>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align: center;color: rgb(235, 12, 12);">Binding</h1>
+            <div class="col-md-4" style="background-color: rgb(39, 111, 219);">
+                <!--Property Binding-->
+                <h2>Property Binding</h2>
+                <h3>Welcome {{name}}</h3>
+                <input [id] = "myId" type = "text" value = "Name"> <br> <!--Property Binding-->
+<!--    below line also works but interpolation only work with string, in somecase we need to work with
+        boolean values.For example disabled property only takes true or false.
+        so property binding is suitable for all cases      -->
+                <!--this not works-->
+                <input disabled = {{true}} id = {{myId}} type = "text" value = "Name"> 
+                <!--this not works-->
+                <input disabled = "false" id = {{myId}} type = "text" value = "Name"> 
+                <!--now it works,hardcode the value-->
+                <input [disabled] = "false" id = {{myId}} type="text" value="Name"> 
+                <!--this also works--> 
+                <input bind-disabled="isDisabled" id={{myId}} type="text" value="Name">  
+            </div>
+            <div class="col-md-4" style="background-color: darkgray;">
+                <!--Class Binding-->
+                <h2>Class Binding</h2>
+                <h3 [class] = "alignmentClass">Welcome {{name}} </h3>
+                <h3 class = "text-success" [class] = "alignmentClass">Angular Binding</h3>
+                <h3 [class.text-danger] = "hasError">Caution!!!! - High Voltage Supply</h3>
+                <!--ngClass-->
+                <h3 [ngClass] = "messageClasses">Selvakumar Raman</h3>
+            </div>
+            <div class="col-md-4" style="background-color: rgb(133, 86, 86);">
+                <!--Style Binding #possible to add conditions-->
+                <h2 [style.color] = "'orange'">Style Binding</h2>
+                <h3 [style.color] = " hasError ?  'purple' : '#2E86C1' ">
+                    Thiagarajar College Of Engineering
+                </h3>
+                <h3 [style.color] = "highlightColor">RheinBrucke</h3>
+                <h3 [ngStyle] = "titleStyles">Software Engineer</h3>
+            </div>
+        </div>
+    </div>
+</div> <br><br>
+
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="background-color: rgb(111, 231, 195);">
+                <!--Event Binding-->
+                <h2>Event Binding</h2>
+                <h3>Welcome {{greeting}}</h3>
+                <button (click) = "onlick($event)">Greet</button>
+                <span>It is a {{eventName}} event</span>
+                <button (click) = "greeting = 'Selva' ">Greet</button> 
+            </div>
+            <div class="col-md-4" style="background-color: rgb(147, 60, 158);">
+                <!--Template Reference Variable  #pass this variable as an argument-->
+                <h2 style="color: rgb(33, 4, 161);">Template Reference Variable</h2>
+                <input #myInput1 type="text">
+                <button (click) = "logMessage(myInput1.value)">Log</button> <br>
+<!--     input tag is print on the console and it is used to refer to an html element and all of 
+         its DOM properties-->
+                <input #myInput2 type="text">
+                <button (click) = "logMessage(myInput2)">Log</button> <br>
+            </div>
+            <div class="col-md-4" style="background-color: rgb(134, 125, 125);">
+                <!--Two way binding-->
+                <h2>Two way binding</h2>
+                <input [(ngModel)]="myName" type="text"> 
+                {{myName}} <!--view and model always in sync-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+  
+   
+
+   
+
+   
+
+   
+
+    
+    
+    
+
+    
+
+    
+    
+
+    

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './_models/User';
-
 import { AccountService } from './_services/account.service';
 
 @Component({
@@ -11,6 +10,10 @@ import { AccountService } from './_services/account.service';
 export class AppComponent {
   title = 'DatingApp';
   
+  //componet interaction between appcomponent and angular-features component
+  name = "Selva"; 
+  message = "";
+
   constructor(public accountService:AccountService){}
 
   ngOnInit()

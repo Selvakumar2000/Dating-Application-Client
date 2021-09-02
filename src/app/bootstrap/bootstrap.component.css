@@ -1,0 +1,63 @@
+.c, .cf
+{
+    background-color: #ccc;
+    margin: 50px auto;
+    height: 200px;
+}
+
+.container-fluid
+{
+    margin: 50px auto;
+    height: 200px;
+}
+
+.content
+{
+    padding: 60px 10px;
+    text-align: center;
+    background: #ddd;
+}
+
+.sidebar
+{
+    padding: 60px 10px;
+    text-align: center;
+    background: rgb(201, 198, 198);
+}
+
+
+.image
+{
+    padding: 60px 10px;
+    text-align: center;
+    background: #ddd;
+}
+
+.image:nth-child(even)
+{
+    background-color: rgb(201, 198, 198);
+}
+
+h1
+{
+    font-size: 2em;
+}
+
+p
+{
+    font-size: 1em;
+}
+
+/*
+.thumb
+{
+    padding: 60px 10px;
+    text-align: center;
+    background: #ddd;
+}
+
+.thumb:nth-child(even)
+{
+    background-color: rgb(201, 198, 198);
+}
+*/
