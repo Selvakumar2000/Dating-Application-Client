@@ -20,8 +20,8 @@ export class MemberListComponent implements OnInit {
   pagination:Pagination;
   userParams:UserParams;
   user:User;
-  genderList = [{value : 'male', display:'Males'},{value : 'female', display:'Females'} ] ;
-
+  genderList = [{ value: 'male', display: 'Males' }, { value: 'female', display: 'Females' }];
+  
   constructor(public memberService:MembersService, public accountService:AccountService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user =>
     {
