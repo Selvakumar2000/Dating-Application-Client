@@ -1,11 +1,13 @@
 import { HttpClient, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
+import { User } from '../_models/User';
 import { UserParams } from '../_models/userParams';
+import { AccountService } from './account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +16,43 @@ export class MembersService {
 
   baseUrl=environment.apiUrl;
   members:Member[]=[];
-  
+  memberCache = new Map(); //it stores the value in key value pair
+  user:User;
+  userParams:UserParams;
 
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient, public accountService : AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user =>
+      {
+        this.user=user;
+        this.userParams=new UserParams(user);
+      })
+   }
+
+  getUserParams()
+  {
+    return this.userParams;
+  }
+
+  setUserParams(params : UserParams)
+  {
+    this.userParams = params;
+  }
+
+  resetUserParams()
+  {
+    this.userParams = new UserParams(this.user);
+    return this.userParams;
+  }
 
   getMembers(userParams : UserParams)
   {
+    //console.log(Object.values(userParams).join('-')); for every http action,we can able tp get a key
+    var response = this.memberCache.get(Object.values(userParams).join('-'));
+    if(response)
+    {
+      return of(response);
+    }
+
     let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
     params=params.append('minAge', userParams.minAge.toString());
@@ -28,7 +61,11 @@ export class MembersService {
     params=params.append('orderBy', userParams.orderBy);
 
     //adding observe --> gets the full response not only body response.
-    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users',params);
+    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users',params)
+    .pipe(map(response => {
+      this.memberCache.set(Object.values(userParams).join('-'),response);
+      return response;
+    }));
   }
 
   private getPaginatedResult<T>(url: string, params: HttpParams) {
@@ -57,8 +94,16 @@ export class MembersService {
 
   getMember(username:string)
   {
-    const member=this.members.find(x=>x.username===username);
-    if(member!==undefined) return of(member);
+    const member = [...this.memberCache.values()]
+      .reduce((arr,elem) => arr.concat(elem.result,[]))
+      .find((member:Member) => member.username === username);
+
+      if(member)
+      {
+        return of(member);
+      }
+     //console.log(member);
+
     //our api methods are authorized,we need to send the token aswell
     return this.http.get<Member>(this.baseUrl+'users/'+username); 
   }
