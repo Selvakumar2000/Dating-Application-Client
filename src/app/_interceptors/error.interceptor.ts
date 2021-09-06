@@ -35,11 +35,13 @@ export class ErrorInterceptor implements HttpInterceptor {
 //modalStateErrors -->it is an array of array,so we need to flatten this for easy iterating  
                 throw modalStateErrors.flat(); //available in es2019
               }
+              else if(typeof(error.error) === 'object')
+              {
+                this.toastr.error(error.statusText, error.status);
+              }
               else
               {
-                //this.toastr.error(error.statusText,error.status);
-                this.toastr.error(error.statusText === "OK" ? "Unauthorised" :
-                                                               error.statusText, error.status);
+                this.toastr.error(error.error, error.status);
               }
               break;
 
