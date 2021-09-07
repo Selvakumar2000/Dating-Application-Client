@@ -11,13 +11,11 @@ import{BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    FormsModule,
     HttpClientModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot(
@@ -46,7 +44,6 @@ import { FormsModule } from '@angular/forms';
     PaginationModule,
     ButtonsModule,
     TimeagoModule,
-    FormsModule,
   ]
 })
 export class SharedModule { }

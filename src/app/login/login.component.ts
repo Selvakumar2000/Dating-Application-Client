@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Login } from '../_models/login';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { AccountService } from '../_services/account.service';
 })
 export class LoginComponent implements OnInit {
 
-  model:any={};
+  model:Login = new Login();
 
   constructor(public accountService:AccountService,public router:Router,public toastr:ToastrService) { }
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   login()
   {
+    console.log(this.model);
     this.accountService.login(this.model).subscribe(
       response=>
       {

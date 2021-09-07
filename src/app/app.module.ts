@@ -66,7 +66,7 @@ import { LoginComponent } from './login/login.component';
     AngularFeaturesComponent,
     TdfFormsComponent,
     ReactiveFormsComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
