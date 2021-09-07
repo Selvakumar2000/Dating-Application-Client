@@ -35,6 +35,7 @@ import { BootstrapComponent } from './bootstrap/bootstrap.component';
 import { AngularFeaturesComponent } from './angular-features/angular-features.component';
 import { TdfFormsComponent } from './tdf-forms/tdf-forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.componen
     BootstrapComponent,
     AngularFeaturesComponent,
     TdfFormsComponent,
-    ReactiveFormsComponent
+    ReactiveFormsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
