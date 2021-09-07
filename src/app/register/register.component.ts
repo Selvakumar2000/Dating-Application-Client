@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
 
   //check password and confirmpassword fields are match
   matchValues(matchTo:string):ValidatorFn
-  {
+  { //all form control are derived from abstract control
     return (control:AbstractControl) =>
     {
       return control?.value==control?.parent?.controls[matchTo].value?null:{isMatching:true};

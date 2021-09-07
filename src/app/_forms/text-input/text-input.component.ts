@@ -11,9 +11,11 @@ export class TextInputComponent implements ControlValueAccessor {
   @Input() label:string;
   @Input() type='text';
 
-  constructor(@Self() public ngControl:NgControl) { 
+  //dependencies injected locally and get the ngControl from somewhere else component
+  constructor(@Self() public ngControl:NgControl) { //NgControl -> is a base class that all formControl extends
     this.ngControl.valueAccessor=this;
   }
+
   writeValue(obj: any): void {
     
   }
