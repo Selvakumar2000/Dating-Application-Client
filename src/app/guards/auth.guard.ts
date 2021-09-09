@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
      map(user=>
       {
         if(user) return true;
-        this.toastr.error('You shall not pass!');  
+        this.toastr.error('You are not authorized!');  
         this.route.navigateByUrl('/')  
 /* To fix :  Not all code paths return a value. 
 compilerOptions:{

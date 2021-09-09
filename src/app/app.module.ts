@@ -36,6 +36,8 @@ import { AngularFeaturesComponent } from './angular-features/angular-features.co
 import { TdfFormsComponent } from './tdf-forms/tdf-forms.component';
 import { ReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 import { LoginComponent } from './login/login.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { LoginComponent } from './login/login.component';
     TdfFormsComponent,
     ReactiveFormsComponent,
     LoginComponent,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule,
