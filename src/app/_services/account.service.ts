@@ -10,8 +10,6 @@ import { User } from '../_models/User';
   providedIn: 'root'
 })
 export class AccountService {
-
-  //baseURL='https://localhost:5001/api/';
   baseURL=environment.apiUrl; //avoid hard-coded string
   private currentUserSource=new ReplaySubject<User>(1);
   currentUser$=this.currentUserSource.asObservable();
@@ -20,7 +18,6 @@ export class AccountService {
 
   register(model:any)
   {
-    //return this.http.post(this.baseURL+'account/Login',model);
     return this.http.post(this.baseURL+'account/Register',model).pipe(
       map((user:User)=>   /* "strict":false to avoid error*/
       {

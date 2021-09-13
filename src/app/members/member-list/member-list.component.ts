@@ -21,8 +21,9 @@ export class MemberListComponent implements OnInit {
   constructor(public memberService:MembersService) {
     this.userParams = this.memberService.getUserParams();
    }
-
+   
   ngOnInit(): void {
+   
     this.loadMembers();
   }
 
@@ -41,7 +42,9 @@ export class MemberListComponent implements OnInit {
         console.log(response);
         this.members=response.result;
         this.pagination=response.pagination;
+        
       });
+     
   }
 
   pageChanged(event:any)

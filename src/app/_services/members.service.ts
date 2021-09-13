@@ -73,7 +73,7 @@ export class MembersService {
   {
     console.log(this.memberCache);
 //https://stackoverflow.com/questions/31048953/what-does-the-three-dots-notation-do-in-javascript
-    const member = [...this.memberCache.values()] //console.log(member);
+    const member = [...this.memberCache.values()] 
       .reduce((arr,elem) => arr.concat(elem.result),[])
       .find((member:Member) => member.username === username);
 
@@ -81,7 +81,6 @@ export class MembersService {
       {
         return of(member);
       }
-     //console.log(member);
 
     //our api methods are authorized,we need to send the token aswell
     return this.http.get<Member>(this.baseUrl+'users/'+username); 

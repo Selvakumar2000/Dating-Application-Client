@@ -11,11 +11,12 @@ import { MembersService } from '../_services/members.service';
 })
 export class ListsComponent implements OnInit {
 
-  members :Partial<Member[]>;
-  predicate ='liked';
+  members :Partial<Member[]>;//partial ->so each one of the properties inside the member is now optional
+  predicate = 'liked';
   pageNumber = 1;
   pageSize = 5;
   pagination : Pagination;
+  loading = false;
 
   constructor(public memberService : MembersService) { }
 
@@ -25,11 +26,13 @@ export class ListsComponent implements OnInit {
 
   loadLikes()
   {
+    this.loading=true;
     this.memberService.getLikes(this.predicate, this.pageNumber, this.pageSize).subscribe(
       response =>
       {
         this.members = response.result;
         this.pagination = response.pagination;
+        this.loading = false;
       }
     )
   }

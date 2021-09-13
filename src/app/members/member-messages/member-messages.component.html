@@ -4,17 +4,16 @@
             No messages yet...say hii by using the message box below
         </div>
 
-        <ul *ngIf = "messages?.length > 0">
+        <ul *ngIf = "messages?.length > 0" class="chat">
             <li *ngFor = "let message of messages">
-                <div>
+                <div *ngIf="message.senderUsername==user.username">
                     <span class="chat-img float-right"> 
                         <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"
                                                     alt="{{message.senderUsername}}">
                     </span>
                     <div class="chat-body">
-                        <div class="header">
+                        <div class="header" style="margin-left: 430px;">
                             <small class="text-muted"> 
-                            
                                     <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
                                     <span class="text-danger" 
                                         *ngIf = "!message.dateRead && message.senderUsername!==username">
@@ -24,10 +23,31 @@
                                         *ngIf = "message.dateRead && message.senderUsername!==username">
                                         (read {{message.dateRead | timeago }})
                                     </span>
-                                
                             </small>
                         </div>
-                        <p>{{message.content}}</p>
+                        <p style="margin-left: 430px;">{{message.content}}</p><br>   
+                    </div>
+                </div>
+                <div *ngIf="message.senderUsername!=user.username">
+                    <span class="chat-img float-left"> 
+                        <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"
+                                                    alt="{{message.senderUsername}}">
+                    </span>
+                    <div class="chat-body ">
+                        <div class="header">
+                            <small class="text-muted"> 
+                                    <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
+                                    <span class="text-danger" 
+                                        *ngIf = "!message.dateRead && message.senderUsername!==username">
+                                        (unread)
+                                    </span>
+                                    <span class="text-success" 
+                                        *ngIf = "message.dateRead && message.senderUsername!==username">
+                                        (read {{message.dateRead | timeago }})
+                                    </span>
+                            </small>
+                        </div>
+                        <p>{{message.content}}</p> <br>
                     </div>
                 </div>
             </li>
