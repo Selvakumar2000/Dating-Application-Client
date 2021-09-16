@@ -4,26 +4,28 @@ import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/User';
+import { PresenceService } from './presence.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseURL=environment.apiUrl; //avoid hard-coded string
+  baseURL=environment.apiUrl; 
   private currentUserSource=new ReplaySubject<User>(1);
   currentUser$=this.currentUserSource.asObservable();
 
-  constructor(public http:HttpClient) { }
+  constructor(public http:HttpClient, public presenceService: PresenceService) { }
 
   register(model:any)
   {
     return this.http.post(this.baseURL+'account/Register',model).pipe(
-      map((user:User)=>   /* "strict":false to avoid error*/
+      map((user:User)=>   
       {
         if(user)
         {
           this.setCurrentUser(user);
+          this.presenceService.createHubConnection(user);
         }
       })
     );
@@ -31,14 +33,14 @@ export class AccountService {
 
   login(model:any)
   {
-    //return this.http.post(this.baseURL+'account/Login',model);
     return this.http.post(this.baseURL+'account/Login',model).pipe(
-      map((response:User)=>   /* "strict":false to avoid error*/
+      map((response:User)=>   
       {
         const user=response;
         if(user)
         {
           this.setCurrentUser(user);
+          this.presenceService.createHubConnection(user);
         }
       })
     );
@@ -58,6 +60,7 @@ export class AccountService {
   {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+    this.presenceService.stopHubConnection();
   }
 
   getDecodedToken(token)

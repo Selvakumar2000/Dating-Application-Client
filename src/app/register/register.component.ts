@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   maxDate:Date;
   validationErrors:string[]=[];
 
-  constructor(public service:AccountService,public toastr:ToastrService,public fb:FormBuilder,
+  constructor(public accountService:AccountService,public toastr:ToastrService,public fb:FormBuilder,
               public router:Router) { }
 
   ngOnInit(): void {
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
   register()
   {
-    this.service.register(this.registerForm.value).subscribe(
+    this.accountService.register(this.registerForm.value).subscribe(
       response=>
       {
         this.router.navigateByUrl('/members');
