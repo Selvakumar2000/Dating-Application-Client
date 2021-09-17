@@ -10,6 +10,7 @@ import { PresenceService } from './_services/presence.service';
 })
 export class AppComponent {
   title = 'DatingApp';
+  users:any;
   
   //componet interaction between appcomponent and angular-features component
   name = "Selva"; 

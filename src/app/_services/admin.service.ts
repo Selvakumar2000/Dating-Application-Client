@@ -12,7 +12,7 @@ export class AdminService {
 
   constructor(public http:HttpClient) { }
 
-  getUserWithRoles()
+  getUsersWithRoles()
   {
     return this.http.get<Partial<User[]>>(this.baseUrl + 'admin/users-with-roles');
   }
