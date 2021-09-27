@@ -1,0 +1,123 @@
+<div [hidden]="loading" class="home-page">
+    <div class="container-custom">
+        <!--Header Container-->
+        <header class="header-style">
+            <!--Top Header Default-->
+            <div class="top-header default">
+                <!--Header Left-->
+                <div class="top-header_left">
+                    <img class="i1" src="./assets/rb-logo.png">
+                    <button class="about">About</button>
+                    <button class="contact">Gallery</button>
+                    <ng-container *ngIf="accountService.currentUser$ | async">
+                        <button class="complaint" routerLink='/lists' routerLinkActive='active'>
+                            Likes
+                        </button>
+                        <button class="complaint" routerLink='/messages' routerLinkActive='active'>
+                            Messages
+                        </button>
+                        <button *appHasRole='["Admin","Moderator"]' class="contact"
+                                 routerLink='/admin' routerLinkActive='active'
+                        >
+                            Admin
+                        </button>
+                    </ng-container>
+                </div>
+  
+                <!--Header Right-->
+                <div class="top-header_right">
+                    <button class="lang" title="Language">
+                        <i style="font-size:17px;" class="fa fa-al">&#xf0ac;</i>
+                        English
+                    </button>
+                    <ng-container *ngIf="accountService.currentUser$ | async"></ng-container>
+                    <button data-backdrop="static" data-keyboard="false" 
+                            class="login" (click)="openLoginModal()"
+                            *ngIf="(accountService.currentUser$ | async) === null"
+                    >
+                        Log In
+                    </button>
+                    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+                        <img id="img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}" >
+                        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.username | titlecase}}</a>
+                        <div class="dropdown-menu mt-3" *dropdownMenu>
+                          <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" (click)="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+  
+        <div class="main-container">
+            <main class="mainpage-content">
+                <div *ngIf="(accountService.currentUser$ | async) === null" 
+                     style="position:relative;margin-top: 140px;"><!--heart-->
+                    <h1 class="theme">Find Your Love 
+                        <span style="color:red;font-size: 100%;margin-left:-15px;">&#10084;&#65039;</span>
+                    </h1>
+                    <button 
+                    class="create-account" (click)="openSignInModal()" 
+                    >
+                        Create Account
+                    </button>
+                </div>
+
+                <div *ngIf="accountService.currentUser$ | async" 
+                      style="position:relative;margin-top: 140px;"><!--heart-->
+                    <h1 class="theme">Let Explore With
+                        <span style="color:red;font-size: 100%;margin-left:-15px;">&#10084;&#65039;</span>
+                    </h1>
+                    <button class="create-account" routerLink='/members'>
+                        Your Best Matches
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div><br>
+    <div class="footer-align">
+        <footer class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>LEGAL</h3><br>
+                    <p>Privacy</p>
+                    <p>Terms</p>
+                    <p>Cookie Policy</p>
+                    <p>Intellectual Property</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>CAREERS</h3><br>
+                    <p>Careers Portal</p>
+                    <p>Tech Blog</p>
+                </div>
+                <div class="col-md-3">
+                    <h3>Social</h3><br>
+                    <a href="#" class="fa fa-instagram fa-2x"></a>
+                    <a href="#" class="fa fa-facebook fa-2x"></a>
+                    <a href="#" class="fa fa-twitter fa-2x"></a>
+                    <a href="#" class="fa fa-youtube fa-2x"></a>
+                    <a href="#" class="fa fa-snapchat-ghost fa-2x"></a>
+                </div>
+                <div class="col-md-3">
+                    <h3>FAQ</h3><br>
+                    <p>Contact</p>
+                    <p>Complaint</p>
+                    <p>Enquiry</p>
+                    <p>Safety & Reporting</p>
+                </div>
+            </div><br><hr style="width: 1200px;"><br>
+            <div class="row">   
+                <div class="col-md-4">
+                    <h3><strong>Want To Contribute!</strong></h3>
+                </div>
+            </div><br>
+            <div class="row align">
+                <div class="col-md-12">
+                    <span class="icon-align">&#169;</span>
+                    <span class="position">2021 IT Team, All Rights Reserved.</span>
+                </div> 
+            </div>
+        </footer>
+    </div> 
+  </div>  

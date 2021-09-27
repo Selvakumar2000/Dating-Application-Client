@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../_models/member';
 import { Pagination } from '../_models/pagination';
+import { AccountService } from '../_services/account.service';
 import { MembersService } from '../_services/members.service';
 
 @Component({
   selector: 'app-lists',
   templateUrl: './lists.component.html',
-  styles: [
-  ]
+  styleUrls: ['./lists.component.css']
 })
 export class ListsComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class ListsComponent implements OnInit {
   pagination : Pagination;
   loading = false;
 
-  constructor(public memberService : MembersService) { }
+  constructor(public memberService : MembersService,public accountService:AccountService) { }
 
   ngOnInit(): void {
     this.loadLikes();

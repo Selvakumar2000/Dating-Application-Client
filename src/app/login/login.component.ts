@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    console.log(this.model);
     this.accountService.login(this.model).subscribe(
       response=>
       {

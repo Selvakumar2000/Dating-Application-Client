@@ -1,12 +1,17 @@
-<ngx-spinner>
+<!-- <ngx-spinner>  bdColor = "rgba(174,23,137,0.8)"
     <h3>Loading....</h3>
 </ngx-spinner>
-<app-nav></app-nav>
+<app-nav></app-nav> 
 
 <div class="container">
     <router-outlet></router-outlet>
-</div>
+</div>  -->
 
+<ngx-spinner bdColor = "rgb(253,38,125)" size = "medium" color = "#fff" type = "ball-fussion"
+             [fullScreen] = "true">
+    <p style="color: white" > Loading... </p>
+</ngx-spinner>
+<router-outlet></router-outlet>
 
 <!--My Learning-->
 

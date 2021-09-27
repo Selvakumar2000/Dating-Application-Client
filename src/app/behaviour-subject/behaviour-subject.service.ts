@@ -6,6 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BehaviourSubjectService {
 
-  data =new BehaviorSubject<number>(10); //initial value here is 10
+  data =new BehaviorSubject<number>(20); //initial value here is 10
   constructor() { }
 }

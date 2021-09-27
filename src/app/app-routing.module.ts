@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AppComponent } from './app.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './guards/prevent-unsaved-changes.guard';
-import { HomeComponent } from './home/home.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { ListsComponent } from './lists/lists.component';
 import { LoginComponent } from './login/login.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -16,62 +17,29 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MessagesComponent } from './messages/messages.component';
 import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 
-// const routes: Routes = [
-//   {path:'', component:HomeComponent},
-//   /*instead of putting this line **canActivate:[AuthGuard]** into every path ,we can use runGuardAlways...*/
-//   {
-//     path:'',
-//     runGuardsAndResolvers:'always',
-//     canActivate:[AuthGuard],
-//     children:
-//     [
-//       {path:'members', component:MemberListComponent},
-//       {path:'members/:id', component:MemberDetailComponent},
-//       {path:'lists', component:MemberListComponent},
-//       {path:'messages', component:MessagesComponent},
-//     ]
-//   },
-//   // {path:'members', component:MemberListComponent,canActivate:[AuthGuard]},
-//   // {path:'members/:id', component:MemberDetailComponent},
-//   // {path:'lists', component:ListsComponent},
-//   // {path:'messages', component:MessagesComponent},
-//      {path:'errors',component:TestErrorsComponent},  
-//      {path:'not-found',component:NotFoundComponent}, 
-//      {path:'server-error',component:ServerErrorComponent}, 
-//      {path:'**', component:NotFoundComponent,pathMatch:'full'},
-// ];
-
-
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
+ 
+  {path: '', component: HomePageComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
       {path: 'members', component: MemberListComponent},
-      //resolver: {key:class} key is used to access the data inside this particular resolver
-      {path: 'members/:username', component: MemberDetailComponent, resolve:{member:MemberDetailedResolver}},
-      {path: 'member/edit', component: MemberEditComponent,canDeactivate:[PreventUnsavedChangesGuard]},
+      {path: 'members/:username', component: MemberDetailComponent, resolve: {member: MemberDetailedResolver}},
+      {path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard]},
       {path: 'lists', component: ListsComponent},
       {path: 'messages', component: MessagesComponent},
-      {path: 'admin', component: AdminPanelComponent,canActivate:[AdminGuard]},
+      {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
     ]
   },
+
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: '**', component: NotFoundComponent, pathMatch: 'full'},
 ];
-
-
-
-
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Message} from '../_models/message';
 import { Pagination } from '../_models/pagination';
+import { AccountService } from '../_services/account.service';
 import { ConfirmService } from '../_services/confirm.service';
 import { MessageService } from '../_services/message.service';
 
@@ -18,7 +20,8 @@ export class MessagesComponent implements OnInit {
   pageSize = 5;
   loading = false;
   
-  constructor(public messageService:MessageService, public confirmService: ConfirmService) { }
+  constructor(public messageService:MessageService, public confirmService: ConfirmService,
+             public accountService:AccountService,public router:Router) { }
 
   ngOnInit(): void {
     this.loadMessages();
@@ -49,10 +52,10 @@ export class MessagesComponent implements OnInit {
       }
     });
   }
-
-  pageChanged(event:any)
+  
+  logout()
   {
-    this.pageNumber = event.page;
-    this.loadMessages();
+    this.accountService.logout();
+    this.router.navigateByUrl('/'); 
   }
 }

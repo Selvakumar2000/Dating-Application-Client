@@ -48,3 +48,16 @@
     animation: fa-blink 1.5s linear infinite;
     color: rgb(1,189,42);
 }
+
+.fa-user{
+    color: green;
+}
+.fa-heart{
+    color: red;
+}
+.fa-envelope{
+    color: hotpink;
+}
+.user-icon{
+    color: indigo;
+}

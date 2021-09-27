@@ -1,11 +1,11 @@
 <div class="card">
     <div class="card-body">
         <div *ngIf="(messageService.messageThread$ | async )?.length === 0">
-            No messages yet...say hii by using the message box below
+            No messages yet... Say hi to begin the chat!
         </div>
 
         <ul 
-            #scrollMe style="overflow: scroll; height: 400px;"
+            #scrollMe style="overflow-y: scroll; height: 450px;"
             [scrollTop]="scrollMe.scrollHeight"
             *ngIf="(messageService.messageThread$ | async )?.length > 0" class="chat"
         >
@@ -16,7 +16,7 @@
                                                     alt="{{message.senderUsername}}">
                     </span>
                     <div class="chat-body">
-                        <div class="header" style="margin-left: 430px;">
+                        <div class="header" style="margin-left: 600px;">
                             <small class="text-muted"> 
                                     <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
                                     <span class="text-danger" 
@@ -29,7 +29,7 @@
                                     </span>
                             </small>
                         </div>
-                        <p style="margin-left: 430px;">{{message.content}}</p><br>   
+                        <p style="margin-left: 600px;">{{message.content}}</p><br>   
                     </div>
                 </div>
                 <div *ngIf="message.senderUsername!=user.username">
@@ -43,7 +43,7 @@
                                     <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
                                     <span class="text-danger" 
                                         *ngIf = "!message.dateRead && message.senderUsername!==username">
-                                        (unread)
+                                        (unread) 	
                                     </span>
                                     <span class="text-success" 
                                         *ngIf = "message.dateRead && message.senderUsername!==username">

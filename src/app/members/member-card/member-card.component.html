@@ -5,7 +5,7 @@
         <ul class="list-inline member-icons animate text-center">
             <li class="list-inline-item"><button routerLink='/members/{{member.username}}'
                 class="btn btn-primary">
-                <i class="fa fa-user"></i></button>
+                <i class="fa fa-user user-icon"></i></button>
             </li>
             <li class="list-inline-item"><button (click) = "addLike(member)" class="btn btn-primary">
                 <i class="fa fa-heart"></i></button>
@@ -13,15 +13,15 @@
             <li class="list-inline-item">
                 <button 
                     routerLink='/members/{{member.username}}' class="btn btn-primary"
-                    [queryParams]='{tab:3}'>
-                <i class="fa fa-envelope"></i></button>
+                    [queryParams]='{tab:2}'>
+                <i class="fa fa-envelope"></i></button> 
             </li>
         </ul>
     </div>
     <div class="card-body p-1">
         <h6 class="card-title text-center mb-1">
             <span [class.is-online]="(presenceService.onlineUsers$ | async ).includes(member.username)">
-                <i class="fa fa-user mr-2"></i>
+                <i class="fa fa-user mr-2 "></i>
             </span>
             {{member.username | titlecase }}, {{member.age}}
         </h6>

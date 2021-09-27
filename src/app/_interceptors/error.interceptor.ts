@@ -37,18 +37,32 @@ export class ErrorInterceptor implements HttpInterceptor {
               }
               else if(typeof(error.error) === 'object')
               {
-                this.toastr.error(error.statusText, error.status);
+                const validationError=[];
+                for (let code of Object.keys(error.error))
+                { 
+                  if(error.error[code])
+                  {
+                    var desc = error.error[code];
+                    validationError.push(desc.description);
+                  }
+                }
+                //console.log(validationError);
+                throw validationError.flat();
+                
+                  
+                  //var desc = error.error[code];
+                  // console.log('selva');
+                  // console.log(desc.description);
+                  //this.toastr.error(desc.description);
               }
               else
               {
-                this.toastr.error(error.error, error.status);
+                this.toastr.error(error.error);
               }
               break;
 
             case 401:
-              //this.toastr.error(error.statusText,error.status);
-              this.toastr.error(error.statusText === "OK" ? "Unauthorised" : 
-                                                            error.statusText, error.status);
+              this.toastr.error(error.error);
               break;
             
             case 404:
@@ -62,7 +76,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
 
             default:
-              this.toastr.error('Something went wrong!');
+              this.toastr.error('Something went wrong! Try After Sometimes');
               console.log(error);
               break;
           }

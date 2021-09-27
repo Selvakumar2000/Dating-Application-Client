@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
@@ -17,6 +18,11 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm:NgForm;
   member:Member;
   user:User;
+
+  city:string;
+  country:string;
+
+
   @HostListener('window:beforeunload',['$event']) unloadNotification($event:any)
   {
     if(this.editForm.dirty)
@@ -28,15 +34,23 @@ export class MemberEditComponent implements OnInit {
   constructor(public accountService:AccountService,public memberService:MembersService,
               public toastr:ToastrService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user=>this.user=user);
+
    }
 
   ngOnInit(): void {
     this.loadMember();
+    this.city=this.member.city;
+    this.country=this.member.country;
+    
   }
 
   loadMember()
   {
-    this.memberService.getMember(this.user.username).subscribe(member=>this.member=member);
+    this.memberService.getMember(this.user.username).subscribe(member =>{
+      this.member=member
+      this.city=this.member.city;
+      this.country=this.member.country;
+    });
   }
 
   updateMember()
@@ -46,6 +60,7 @@ export class MemberEditComponent implements OnInit {
       {
         this.toastr.success('Profile updated successfully');
         this.editForm.reset(this.member); //update the member after we click the savechanges button
+        
       }
     )
     

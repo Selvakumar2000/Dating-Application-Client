@@ -7,12 +7,12 @@
                 (click)="setMainPhoto(photo)"
                 [ngClass]='photo.isMain? "btn-success active":"btn-outline-success"'
                 class="btn btn-sm">
-            Main</button>
+            Set as Main</button>
             <button
                 [disabled]="photo.isMain"
                 (click)="deletePhoto(photo.id)" 
-                class="btn btn-sm btn-danger">
-            <i class="fa fa-trash"></i>
+                class="btn btn-sm btn-danger" tooltip="Delete" placement="right">
+            <i class="fa fa-trash"></i> 
             </button>
         </div>
     </div>
@@ -36,10 +36,10 @@
 
         
 
-        Multiple
-        <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
+        <h6>Upload Multiple Files</h6>
+        <input type="file" ng2FileSelect [uploader]="uploader" multiple/><br/><br>
 
-        Single
+        <h6>Upload Single File</h6>
         <input type="file" ng2FileSelect [uploader]="uploader" />
     </div>
 
@@ -65,11 +65,11 @@
 
         <div>
             <div>
-                Queue progress:
+                <p>Queue progress:</p>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
                 </div>
-            </div>
+            </div><br>
             <button type="button" class="btn btn-success btn-s"
                     (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                 <span class="fa fa-upload"></span> Upload all

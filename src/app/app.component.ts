@@ -15,8 +15,11 @@ export class AppComponent {
   //componet interaction between appcomponent and angular-features component
   name = "Selva"; 
   message = "";
+  
+  constructor(public accountService:AccountService, public presenceService: PresenceService,
+    ){}
 
-  constructor(public accountService:AccountService, public presenceService: PresenceService){}
+    
 
   ngOnInit()
   {
@@ -29,6 +32,10 @@ export class AppComponent {
     {
       this.accountService.setCurrentUser(user);
       this.presenceService.createHubConnection(user);
+    }
+    else
+    {
+      this.accountService.setCurrentUser(null);
     }
     
   }
