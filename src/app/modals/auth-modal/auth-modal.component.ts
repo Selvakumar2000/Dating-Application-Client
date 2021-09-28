@@ -100,7 +100,13 @@ export class AuthModalComponent implements OnInit {
       },
       error =>
       {
-        //this.bsModalRef.setClass()
+        this.bsModalRef.hide();
+        const initialState = {
+            formType:'loginForm',
+            title: 'GET STARTED',
+        };
+        this.bsModalRef = this.modalService.show(AuthModalComponent, {initialState});
+        this.bsModalRef.content.okBtnName = 'LOG IN';
       }
     );
       

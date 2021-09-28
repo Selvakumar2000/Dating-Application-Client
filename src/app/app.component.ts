@@ -32,11 +32,6 @@ export class AppComponent {
     {
       this.accountService.setCurrentUser(user);
       this.presenceService.createHubConnection(user);
-    }
-    else
-    {
-      this.accountService.setCurrentUser(null);
-    }
-    
+    }  
   }
 }
