@@ -30,6 +30,8 @@ export class AuthModalComponent implements OnInit {
 
   loading=false;
 
+  
+
   constructor(public bsModalRef: BsModalRef, public accountService:AccountService,
     public toastr:ToastrService, public fb:FormBuilder, public router:Router,public modalService: BsModalService,) { }
 
@@ -39,6 +41,13 @@ export class AuthModalComponent implements OnInit {
     this.maxDate=new Date();
     this.maxDate.setFullYear(this.maxDate.getFullYear()-18);
     //don't allow any selection of dates less than 18years ago
+  }
+
+  //password show/hidden icon
+  hide: boolean = true;
+
+  myFunction() {
+    this.hide = !this.hide;
   }
 
   initializeForm()

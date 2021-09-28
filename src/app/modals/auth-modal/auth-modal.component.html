@@ -98,13 +98,18 @@
                <div class="form-group">
                     <input required
                         type="password" 
-                        class="form-control"
+                        class="form-control input-placeholder"
                         name="password"
                         #password="ngModel"
                         [class.is-invalid] = "password.invalid && password.touched"
                         [(ngModel)]="model.password"
                         placeholder="Password"
+                        id="inputPassword"
+                        [type]="hide ? 'password' : 'text'" 
                     >
+                    <i *ngIf="!hide" class="fa fa-eye fa-2x placeholder" (click)="myFunction()"></i>
+                    <i *ngIf="hide" class="fa fa-eye-slash fa-2x placeholder" (click)="myFunction()"></i>
+                   
                     <small class="text-danger" [class.d-none] = "password.valid || password.untouched">
                         Password is required
                     </small>

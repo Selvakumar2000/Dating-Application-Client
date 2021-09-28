@@ -16,6 +16,13 @@ export class TextInputComponent implements ControlValueAccessor {
     this.ngControl.valueAccessor=this;
   }
 
+  //password show/hidden icon
+  hide: boolean = true;
+
+  myFunction() {
+    this.hide = !this.hide;
+  }
+  
   writeValue(obj: any): void {
     
   }
