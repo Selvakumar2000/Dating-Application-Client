@@ -1,8 +1,14 @@
 <div class="container-fluid container-custom">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h1>{{member.username | titlecase}} Profile</h1>
-        </div><br><br>
+        </div>
+        <div class="col-md-4 back-button">
+            <button class="btn btn-info" routerLink='/members'>
+                Back To Main Page
+            </button>
+        </div>
+        <br><br>
         <div class="col-4">
             <div class="card">
                 <div *ngIf="(presenceService.onlineUsers$ | async).includes(member.username)"

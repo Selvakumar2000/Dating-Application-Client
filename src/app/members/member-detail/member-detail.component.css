@@ -24,3 +24,12 @@ h4{
 .para{
     color: rgb(184, 184, 178);
 }
+
+.btn-info{
+    background-color: rgb(223, 54, 121);
+    float: right;
+}
+
+.back-button{
+    margin-top: 20px;
+}

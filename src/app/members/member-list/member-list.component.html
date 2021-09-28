@@ -1,7 +1,7 @@
 <div [hidden]="loading" class="container-custom"><br><br>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="top-header_left">
                     <img class="i1" src="./assets/rb-logo.png">
                     <ng-container *ngIf="accountService.currentUser$ | async">
@@ -14,6 +14,9 @@
                         <button class="about" routerLink='/messages' routerLinkActive='active'>
                             Messages
                         </button>
+                        <button class="about" (click)="staticModal.show()">
+                            Filters
+                        </button>
                         <button *appHasRole='["Admin","Moderator"]' class="about"
                                  routerLink='/admin' routerLinkActive='active'
                         >
@@ -22,13 +25,15 @@
                     </ng-container>
                 </div>
             </div>
-            <div class="col-md-4">
-                <h2>Your Matches - {{pagination?.totalItems}} Found</h2>
+            <div class="col-md-3">
+                <!-- <h2>Your Matches - {{pagination?.totalItems}} Found</h2> -->
             </div>
             <div class="col-md-4">
                 <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-                    <img id="img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}" >
-                    <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.username | titlecase}}</a>
+                    <img id="img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+                    <a class="dropdown-toggle text-light ml-2" dropdownToggle>
+                        Welcome {{user.username | titlecase}}
+                    </a>
                     <div class="dropdown-menu mt-3" *dropdownMenu>
                       <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
                       <div class="dropdown-divider"></div>
@@ -37,71 +42,103 @@
                 </div>
             </div>
         </div>
-    </div><br>
+    </div>
+ 
+<!--Modal for Filters-->
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static', keyboard: false}"
+tabindex="-1" >
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title">Best Matches</h4>
+              <button type="button" class="btn-close close pull-right" (click)="staticModal.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">  <!--Filters-->
+                <div class="container-fluid">
+                    <form #form="ngForm" class="form-inline mb-3" id="filterForm" 
+                          (ngSubmit)= "loadMembers()" autocomplete="off">
+                        <div class="form-group">
+                            <label><strong>Age From :</strong></label>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <input
+                                type = "number" 
+                                class="form-control ml-1"
+                                style="width: 70px;"
+                                name= "minAge"
+                                [(ngModel)] = "userParams.minAge"
+                            >
+                        </div> <br><br><br>
+                
+                        <div class="form-group">
+                            <label><strong>Age To :</strong></label>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <input
+                                type = "number" 
+                                class="form-control ml-1"
+                                style="width: 70px;"
+                                name= "maxAge"
+                                [(ngModel)] = "userParams.maxAge"
+                            >
+                        </div> <br><br><br>
+                
+                        <div class="form-group px-2">
+                            <label><strong>Show: </strong></label>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <select name="gender" style="width: 130px" [(ngModel)]="userParams.gender" 
+                                    class="form-control ml-1">
+                                <option *ngFor="let gender of genderList" [value]="gender.value">
+                                    {{gender.display}}
+                                </option>
+                            </select>
+                        </div><br><br><br>
+                    </form>
+                </div> 
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="submit" form="filterForm" 
+                        (click)="staticModal.hide()">
+                        Apply Filters
+                </button>
+                <button (click) = "resetFilters()" class="btn btn-primary ml-1" type="submit">
+                    Reset Filters
+                </button>
+            </div>
+        </div>
+    </div>
+</div><br>
+
     
-    <div class="container-fluid mt-3">
-        <form #form="ngForm" class="form-inline mb-3" (ngSubmit)= "loadMembers()" autocomplete="off">
-            <div class="form-group">
-                <label><strong>Age From :</strong></label>
-                <input
-                    type = "number" 
-                    class="form-control ml-1"
-                    style="width: 70px;"
-                    name= "minAge"
-                    [(ngModel)] = "userParams.minAge"
+    <div class="container-fluid">
+        <div class="col">
+            <div>
+                <h2 class="text-center">Your Matches - {{pagination?.totalItems}} Found</h2>
+            </div>
+            <div class="btn-group float-right">
+                <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    name="orderBy" 
+                    (click) = "loadMembers()"
+                    btnRadio = 'lastActive'
+                    [(ngModel)] = "userParams.orderBy"
                 >
-            </div>
-    
-            <div class="form-group">
-                <label><strong>Age To :</strong></label>
-                <input
-                    type = "number" 
-                    class="form-control ml-1"
-                    style="width: 70px;"
-                    name= "maxAge"
-                    [(ngModel)] = "userParams.maxAge"
+                    Last Active
+                </button>
+                <button 
+                    type="button"
+                    class="btn btn-primary" 
+                    name="orderBy" 
+                    (click) = "loadMembers()"
+                    btnRadio = 'created'
+                    [(ngModel)] = "userParams.orderBy"
                 >
+                    Newest Members
+                </button>
             </div>
-    
-            <div class="form-group px-2">
-                <label><strong>Show: </strong></label>
-                <select name="gender" style="width: 130px" [(ngModel)]="userParams.gender" 
-                        class="form-control ml-1">
-                    <option *ngFor="let gender of genderList" [value]="gender.value">
-                        {{gender.display}}
-                    </option>
-                </select>
-            </div>
-    
-            <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
-            <button (click) = "resetFilters()" class="btn btn-primary ml-1" type="submit">Reset Filters</button>
-    
-            <div class="col">
-                <div class="btn-group float-right">
-                    <button 
-                        type="button"
-                        class="btn btn-primary" 
-                        name="orderBy" 
-                        (click) = "loadMembers()"
-                        btnRadio = 'lastActive'
-                        [(ngModel)] = "userParams.orderBy"
-                    >
-                        Last Active
-                    </button>
-                    <button 
-                        type="button"
-                        class="btn btn-primary" 
-                        name="orderBy" 
-                        (click) = "loadMembers()"
-                        btnRadio = 'created'
-                        [(ngModel)] = "userParams.orderBy"
-                    >
-                        Newest Members
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div> <br><br>
+        </div>
+    </div> <br><br><br>
     
     <div class="row" style="margin-left: 140px;">
         <div *ngFor="let member of members" class="col-2">
@@ -110,7 +147,7 @@
         </div>
     </div><br><br>
     
-    <div class="d-flex justify-content-center" *ngIf="pagination">
+    <div class="d-flex justify-content-center" *ngIf="pagination && members.length>0">
         <pagination 
             [boundaryLinks]="true" 
     

@@ -107,4 +107,11 @@ select {
     display: inline;
     border-radius: 50%;
 }
+
+.modal-title{
+  margin-left: 150px;
+}
  
+strong{
+  color: black;
+}

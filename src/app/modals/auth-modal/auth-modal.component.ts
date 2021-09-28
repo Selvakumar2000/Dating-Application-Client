@@ -103,8 +103,8 @@ export class AuthModalComponent implements OnInit {
     this.accountService.login(this.model).subscribe(
       response=>
       {
-        this.loading=false;
         this.bsModalRef.hide();
+        this.loading=false;
         this.router.navigateByUrl('/members');
       },
       error =>

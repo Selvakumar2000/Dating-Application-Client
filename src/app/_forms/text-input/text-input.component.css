@@ -5,6 +5,11 @@
     margin-left: 390px;
 }
 
+.placeholder:hover{
+  cursor: pointer;
+}
+
+
 .input-placeholder {
   position: relative;
 

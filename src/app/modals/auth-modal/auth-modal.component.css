@@ -16,11 +16,18 @@ h5{
     text-align: center;
     cursor: pointer;
 }
+u:hover{
+    color: black;
+}
 
 .placeholder{
     position: absolute;
     margin-top: -35px; 
     margin-left: 390px;
+}
+
+.placeholder:hover{
+    cursor: pointer;
 }
 
 .input-placeholder {
