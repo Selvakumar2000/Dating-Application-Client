@@ -1,0 +1,42 @@
+<!-- Current Username Chat Alignmnt Desing-->
+<div *ngIf="message.senderUsername==user.username">
+                    <span class="chat-img float-right"> 
+                        <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"
+                                                alt="{{message.senderUsername}}">
+                    </span>
+                    <div class="chat-body">
+                        <div class="header float-right">
+                            <small class="text-muted"> 
+                                <span   class="text-danger" 
+                                        *ngIf = "!message.dateRead && message.senderUsername!==username">
+                                    (sent {{message.messageSent | timeago }})
+                                </span>
+                                <span   class="text-success" 
+                                        *ngIf = "message.dateRead && message.senderUsername!==username">
+                                    (seen {{message.dateRead | timeago }})
+                                </span>
+                            </small>
+                        </div><br>
+                        <div style="border: 1px solid rgb(255, 250, 250);
+                                    color: white;
+                                    box-sizing: border-box;
+                                    padding:10px;
+                                    border-radius: 15px;
+                                    margin-top: 3px;
+                                    margin-left: 1%;
+                                    position: relative;
+                                    max-width: 65%;
+                                    min-height: 30px;
+                                    height: auto;
+                                    float: right;
+                                    margin-right: 1%;
+                                    clear: right; 
+                                    background-color: #3a2ac5;
+                                    display:table;">
+                            {{message.content}}
+                        </div><br>
+                    </div><br>
+                </div>
+
+
+
