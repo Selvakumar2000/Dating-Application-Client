@@ -54,7 +54,7 @@ websockets which has no support for an authentication header.
 
 
     this.hubConnection.on('UserIsOffline', username => {
-      //this.toastr.warning(username + 'has disconnected');
+      this.toastr.warning(username + 'has disconnected');
     })
 
     this.hubConnection.on('GetOnlineUsers', (usernames:string[]) => {
