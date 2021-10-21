@@ -1,0 +1,21 @@
+
+.home-page
+{
+  width:1368px;
+  color: rgb(255, 251, 251);
+}
+
+ .container-custom {
+    background:linear-gradient(to bottom, rgba(3, 3, 3, 0), rgb(7,7,7)),url("/assets/bb8.jpg") center;
+    /*background-image: url("/assets/b1.jpg");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  } 
+
+  .btn-info{
+    background-color: rgb(223, 54, 121);
+    float: right;
+    margin-top: -50px;
+    margin-right: 60px;
+}

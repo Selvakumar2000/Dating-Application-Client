@@ -1,62 +1,82 @@
 <div class="card">
-    <div class="card-body">
+    <div class="card-body" >
         <div *ngIf="(messageService.messageThread$ | async )?.length === 0">
-            No messages yet... Say hi to begin the chat!
+            <strong class="text-white">No messages yet... Say hi to begin the chat!</strong>  
         </div>
 
-        <ul 
-            #scrollMe style="overflow-y: scroll; height: 450px;"
-            [scrollTop]="scrollMe.scrollHeight"
-            *ngIf="(messageService.messageThread$ | async )?.length > 0" class="chat"
-        >
+        <ul *ngIf="(messageService.messageThread$ | async )?.length > 0" class="chat">
             <li *ngFor="let message of (messageService.messageThread$ | async )">
                 <div *ngIf="message.senderUsername==user.username">
-                    <span class="chat-img float-right"> 
-                        <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"
-                                                    alt="{{message.senderUsername}}">
-                    </span>
                     <div class="chat-body">
-                        <div class="header" style="margin-left: 600px;">
-                            <small class="text-muted"> 
-                                    <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
-                                    <span class="text-danger" 
+                        <div style="border: 1px solid rgb(255, 250, 250);
+                                    color: white;
+                                    box-sizing: border-box;
+                                    padding:10px;
+                                    border-radius: 15px;
+                                    margin-top: -3px;
+                                    margin-left:300px;
+                                    position: relative;
+                                    max-width: 65%;
+                                    min-height: 30px;
+                                    height: auto;
+                                    float: right;
+                                    margin-right: 1%;
+                                    clear: right; 
+                                    background-color: #3a2ac5;
+                                    display:table;">
+                            {{message.content}} &nbsp;
+                            <small class="text-bold float-right"> 
+                                <span class="text-danger" 
                                         *ngIf = "!message.dateRead && message.senderUsername!==username">
-                                        (unread)
-                                    </span>
-                                    <span class="text-success" 
+                                    (sent {{message.messageSent | timeago }})
+                                </span>
+                                <span class="text-success" 
                                         *ngIf = "message.dateRead && message.senderUsername!==username">
-                                        (read {{message.dateRead | timeago }})
-                                    </span>
+                                    (seen {{message.dateRead | timeago }})
+                                </span>
                             </small>
-                        </div>
-                        <p style="margin-left: 600px;">{{message.content}}</p><br>   
+                        </div><br>
                     </div>
-                </div>
+                </div><br>
+
                 <div *ngIf="message.senderUsername!=user.username">
                     <span class="chat-img float-left"> 
                         <img class="rounded-circle" src="{{message.senderPhotoUrl || './assets/user.png'}}"
-                                                    alt="{{message.senderUsername}}">
+                                            alt="{{message.senderUsername}}">
                     </span>
                     <div class="chat-body ">
                         <div class="header">
-                            <small class="text-muted"> 
-                                    <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
-                                    <span class="text-danger" 
+                            <small class="text-secondary text-bold"> 
+                                <span class="fa fa-clock">{{message.messageSent | timeago }}</span>
+                                <span   class="text-danger" 
                                         *ngIf = "!message.dateRead && message.senderUsername!==username">
-                                        (unread) 	
-                                    </span>
-                                    <span class="text-success" 
+                                    (sent {{message.messageSent | timeago }}) 	
+                                </span>
+                                <span   class="text-success" 
                                         *ngIf = "message.dateRead && message.senderUsername!==username">
-                                        (read {{message.dateRead | timeago }})
-                                    </span>
+                                    (seen {{message.dateRead | timeago }})
+                                </span>
                             </small>
                         </div>
-                        <p>{{message.content}}</p> <br>
+                        <div style="border: 1px solid rgb(255, 250, 250);
+                                    color: black;
+                                    box-sizing: border-box;
+                                    padding:10px;
+                                    border-radius: 15px;
+                                    margin-top: 3px;
+                                    margin-left: 1%;
+                                    position: relative;
+                                    max-width: 65%;
+                                    min-height: 30px;
+                                    height: auto;
+                                    background-color: #c74a89;
+                                    display:table;">
+                            {{message.content}}
+                        </div>
                     </div>
                 </div>
             </li>
-        </ul>
-        
+        </ul>   
     </div>
     <div class="card-footer">
         <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">

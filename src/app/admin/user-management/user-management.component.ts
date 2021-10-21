@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from 'src/app/modals/roles-modal/roles-modal.component';
 import { User } from 'src/app/_models/User';
 import { AdminService } from 'src/app/_services/admin.service';
@@ -29,8 +29,10 @@ export class UserManagementComponent implements OnInit {
 
   openRolesModal(user:User)
   {
-    const config = {
+    const config: ModalOptions = {
       class: 'modal-dialog-centered',
+      backdrop:'static',
+      keyboard:false,
       initialState: {
         user,
         roles: this.getRolesArray(user)
@@ -79,6 +81,16 @@ export class UserManagementComponent implements OnInit {
       }
     })
     return roles;
+  }
+
+  activateUser()
+  {
+    console.log('Deleted Successfully');
+  }
+
+  deactivateUser()
+  {
+    console.log('Deleted Successfully');
   }
 
 }

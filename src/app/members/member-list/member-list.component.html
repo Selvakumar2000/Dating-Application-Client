@@ -8,13 +8,17 @@
                         <button class="about" routerLink="/" routerLinkActive='active'>
                             Home
                         </button>
-                        <button class="about" routerLink='/lists' routerLinkActive='active'>
+                        <button *ngIf="!(username=='admin')" class="about" routerLink='/lists' routerLinkActive='active'>
                             Likes
                         </button>
                         <button class="about" routerLink='/messages' routerLinkActive='active'>
                             Messages
+                            <span class="position-absolute top-0 start-100 translate-middle
+                                 badge rounded-pill bg-danger">
+                                99
+                            </span>
                         </button>
-                        <button class="about" (click)="staticModal.show()">
+                        <button class="about" (click)="openModalWithClass(staticModal)">
                             Filters
                         </button>
                         <button *appHasRole='["Admin","Moderator"]' class="about"
@@ -35,7 +39,7 @@
                         Welcome {{user.username | titlecase}}
                     </a>
                     <div class="dropdown-menu mt-3" *dropdownMenu>
-                      <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
+                      <a routerLink='/member/edit' class="dropdown-item">View Profile</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" (click)="logout()">Logout</a>
                     </div>
@@ -45,13 +49,12 @@
     </div>
  
 <!--Modal for Filters-->
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static', keyboard: false}"
-tabindex="-1" >
+<ng-template #staticModal>
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-          <div class="modal-header">
+            <div class="modal-header">
               <h4 class="modal-title">Best Matches</h4>
-              <button type="button" class="btn-close close pull-right" (click)="staticModal.hide()">
+              <button type="button" class="btn-close close pull-right" (click)="modalRef?.hide()">
                 <span aria-hidden="true" class="visually-hidden">&times;</span>
               </button>
             </div>
@@ -98,7 +101,7 @@ tabindex="-1" >
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" type="submit" form="filterForm" 
-                        (click)="staticModal.hide()">
+                        (click)="modalRef?.hide()">
                         Apply Filters
                 </button>
                 <button (click) = "resetFilters()" class="btn btn-primary ml-1" type="submit">
@@ -107,7 +110,7 @@ tabindex="-1" >
             </div>
         </div>
     </div>
-</div><br>
+</ng-template><br>
 
     
     <div class="container-fluid">

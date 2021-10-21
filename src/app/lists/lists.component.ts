@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Member } from '../_models/member';
 import { Pagination } from '../_models/pagination';
 import { AccountService } from '../_services/account.service';
 import { MembersService } from '../_services/members.service';
+import { MessageService } from '../_services/message.service';
+import { PresenceService } from '../_services/presence.service';
 
 @Component({
   selector: 'app-lists',
@@ -13,12 +16,10 @@ export class ListsComponent implements OnInit {
 
   members :Partial<Member[]>;//partial ->so each one of the properties inside the member is now optional
   predicate = 'liked';
-  pageNumber = 1;
-  pageSize = 5;
-  pagination : Pagination;
-  loading = false;
+  
 
-  constructor(public memberService : MembersService,public accountService:AccountService) { }
+  constructor(public memberService : MembersService,public accountService:AccountService,
+              public router : Router,public presenceService:PresenceService,public messageService:MessageService) { }
 
   ngOnInit(): void {
     this.loadLikes();
@@ -26,21 +27,18 @@ export class ListsComponent implements OnInit {
 
   loadLikes()
   {
-    this.loading=true;
-    this.memberService.getLikes(this.predicate, this.pageNumber, this.pageSize).subscribe(
+    this.memberService.getLikes(this.predicate).subscribe(
       response =>
       {
-        this.members = response.result;
-        this.pagination = response.pagination;
-        this.loading = false;
+        this.members = response;
       }
     )
   }
 
-  pageChanged(event:any)
+  logout()
   {
-    this.pageNumber = event.page;
-    this.loadLikes();
+    this.accountService.logout();
+    this.router.navigateByUrl('/'); 
   }
 
 }

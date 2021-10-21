@@ -4,14 +4,23 @@
             <tr>
                 <th style="width:30%">Username</th>
                 <th style="width:40%">Active Roles</th>
-                <th style="width:30%">Action</th>
+                <th style="width:30%;padding-left: 50px;">Action</th>
             </tr>
             <tr *ngFor="let user of users">
-                <td>{{user.username}}</td>
+                <td>{{user.username | titlecase}}</td>
                 <td>{{user.roles}}</td>
-                <td><i class="fa fa-edit" tooltip="Edit" placement="right" 
-                       style="font-size:28px; color:green; cursor: pointer;"
+                <td>
+                    <i class="fa fa-edit" tooltip="Edit" placement="right" 
+                       style="font-size:28px; color:rgb(194, 18, 76); cursor: pointer;"
                        (click)="openRolesModal(user)">
+                    </i>
+                    <i class="fa fa-check-circle ml-4" tooltip="Activate" placement="right" 
+                       style="font-size:28px; color:green; cursor: pointer;"
+                       (click)="activateUser()">
+                    </i>
+                    <i class="fa fa-times-circle ml-4" tooltip="Deactivate" placement="right" 
+                       style="font-size:28px; color:red; cursor: pointer;"
+                       (click)="deactivateUser()">
                     </i>
                 </td>
             </tr>

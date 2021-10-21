@@ -16,10 +16,7 @@ export class AppComponent {
   name = "Selva"; 
   message = "";
   
-  constructor(public accountService:AccountService, public presenceService: PresenceService,
-    ){}
-
-    
+  constructor(public accountService:AccountService, public presenceService: PresenceService){}
 
   ngOnInit()
   {

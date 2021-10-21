@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 export class PhotoEditorComponent implements OnInit {
 
   @Input() member:Member;
+  
   uploader:FileUploader;
   hasBaseDropzoneOver=false;
   baseUrl=environment.apiUrl;
@@ -65,6 +66,7 @@ export class PhotoEditorComponent implements OnInit {
     this.uploader=new FileUploader(
       {
         url:this.baseUrl+ 'users/add-photo',
+        //because this request not going via interceptor
         authToken:'Bearer '+this.user.token,
         isHTML5:true,
         allowedFileType:['image'],
@@ -76,7 +78,7 @@ export class PhotoEditorComponent implements OnInit {
 
     this.uploader.onAfterAddingFile=(file)=>
     {
-      file.withCredentials=false;
+      file.withCredentials=false; //otherwise we need to add adjustments into our cors policy in API
     }
 
     this.uploader.onSuccessItem=(item,response,status,headers)=>

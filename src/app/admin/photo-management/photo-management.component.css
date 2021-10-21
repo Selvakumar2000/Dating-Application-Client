@@ -1,0 +1,14 @@
+
+.home-page
+{
+  width:1368px;
+  color: white;
+}
+
+ .container-custom {
+    background:linear-gradient(to top, rgba(3, 3, 3, 0), rgb(7, 7, 7)),url("/assets/bb5.jpg") center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 200vh;
+  } 

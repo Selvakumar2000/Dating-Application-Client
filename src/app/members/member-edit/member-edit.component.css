@@ -1,6 +1,6 @@
 .container-custom {
     background:linear-gradient(rgba(7, 7, 7, 0.7), rgb(7, 7, 7)),url("/assets/bg8.jpg") center;
-    height: 100vh;
+    height: 120vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -40,3 +40,4 @@ button.login{
   h1,h4,label{
       color:antiquewhite;
   }
+  

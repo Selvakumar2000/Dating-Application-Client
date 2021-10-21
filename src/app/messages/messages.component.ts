@@ -5,6 +5,7 @@ import { Pagination } from '../_models/pagination';
 import { AccountService } from '../_services/account.service';
 import { ConfirmService } from '../_services/confirm.service';
 import { MessageService } from '../_services/message.service';
+import { PresenceService } from '../_services/presence.service';
 
 @Component({
   selector: 'app-messages',
@@ -15,13 +16,10 @@ export class MessagesComponent implements OnInit {
 
   messages : Message[];
   pagination : Pagination;
-  container = 'Unread';
-  pageNumber = 1;
-  pageSize = 5;
+  container = 'Inbox';
   loading = false;
-  
   constructor(public messageService:MessageService, public confirmService: ConfirmService,
-             public accountService:AccountService,public router:Router) { }
+             public accountService:AccountService,public router:Router,public presenceService:PresenceService) { }
 
   ngOnInit(): void {
     this.loadMessages();
@@ -30,11 +28,10 @@ export class MessagesComponent implements OnInit {
   loadMessages()
   {
     this.loading = true;
-    this.messageService.getMessages(this.pageNumber,this.pageSize,this.container).subscribe(
+    this.messageService.getMessages(this.container).subscribe(
       response =>
       {
-        this.messages = response.result;
-        this.pagination = response.pagination;
+        this.messages = response;
         this.loading = false;
       }
     );
@@ -43,7 +40,8 @@ export class MessagesComponent implements OnInit {
 
   deleteMessage(id:number)
   {
-    this.confirmService.confirm('Confirm delete message', 'This cannot  be undone').subscribe(result => {
+    this.confirmService.confirm('Confirm delete message', 'This message can not be retrieved')
+    .subscribe(result => {
       if(result)
       {
         this.messageService.deleteMessage(id).subscribe(() => {

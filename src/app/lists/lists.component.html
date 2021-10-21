@@ -1,4 +1,4 @@
-<div  [hidden]="loading" class="container-custom"><br>
+<div class="container-custom"><br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
@@ -13,6 +13,10 @@
                         </button>
                         <button class="about" routerLink='/messages' routerLinkActive='active'>
                             Messages
+                            <span class="position-absolute top-0 start-100 translate-middle
+                                 badge rounded-pill bg-danger">
+                                99
+                            </span>
                         </button>
                         <button *appHasRole='["Admin","Moderator"]' class="about"
                                  routerLink='/admin' routerLinkActive='active'
@@ -27,7 +31,7 @@
                     <img id="img" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}" >
                     <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.username | titlecase}}</a>
                     <div class="dropdown-menu mt-3" *dropdownMenu>
-                      <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
+                      <a routerLink='/member/edit' class="dropdown-item">View Profile</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" (click)="logout()">Logout</a>
                     </div>
@@ -38,37 +42,20 @@
             <div class="col-md-4" name="predicate">
                 <button class="btn btn-primary" btnRadio ="liked" 
                         [(ngModel)] = "predicate" (click) = "loadLikes()"> 
-                    Members I Like
+                    People I Like
                 </button>
                 <button class="btn btn-success ml-3" btnRadio ="likedBy" 
                         [(ngModel)] = "predicate" (click) = "loadLikes()"> 
-                    Members who like me
+                    People who like me
                 </button>
             </div>
         </div><br><br>
-    
-        <div class="row member-row">
-            <div class="col-2" *ngFor = "let member of members">
+    </div> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2" *ngFor = "let member of members">
                 <app-member-card [member] = "member"></app-member-card>
             </div>
-        </div><br><br>
-        <div class="row">
-            <div class="col-md-12 d-flex justify-content-center" 
-                 *ngIf="pagination && !loading && !(members.length===0)">
-                <pagination 
-                    [boundaryLinks]="true" 
-            
-                    [totalItems]="pagination.totalItems"
-                    [itemsPerPage]="pagination.itemsPerPage"
-                    [(ngModel)]="pagination.currentPage"
-                    (pageChanged)="pageChanged($event)"
-                    
-                    previousText="&lsaquo;" 
-                    nextText="&rsaquo;" 
-                    firstText="&laquo;" 
-                    lastText="&raquo;">
-                </pagination>
-            </div>
         </div>
-    </div>    
+    </div>   
 </div>

@@ -1,4 +1,4 @@
-<div [hidden]="loading">
+<div>
     <div class="modal-header">
         <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
           <span aria-hidden="true" class="visually-hidden">&times;</span>
@@ -16,6 +16,9 @@
                     </label>
                     <label class="radio-inline">
                         <input type="radio" value="Female" formControlName='gender' class="ml-3">Female
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="Others" formControlName='gender' class="ml-3">Others
                     </label>
                 </div>
                 <app-text-input 
@@ -46,15 +49,19 @@
                     [formControl]='registerForm.controls["confirmPassword"]' 
                     [label]='"Confirm Password"' [type]='"password"'>
                 </app-text-input>
-            
-            <!-- Display server-side validation errors -->
+
+                <!-- Display server-side validation errors -->
+                <!-- <span class="text-danger">
+                    {{validationErrors.error}}
+                </span>
+        
                 <div class="row" *ngIf="validationErrors.length > 0">
                     <ul class="text-danger">
                         <li *ngFor="let error of validationErrors">
                             {{error}}
                         </li>
                     </ul>
-                </div>
+                </div> -->
             
                 <div class="form-group text-center">
                     <button [disabled]='!registerForm.valid' class="btn btn-success mr-2" type="submit"
@@ -69,8 +76,7 @@
                 </div>
             </form>
         </div>
-    
-        <div *ngIf="formType === 'loginForm'" class="container" [hidden]="loading">
+        <div *ngIf="formType === 'loginForm'" class="container">
             <form #loginForm="ngForm" novalidate   
                autocomplete="off" (ngSubmit)="login()">
                <img class="login-image" src="./assets/bg2.jfif" alt="logo">
@@ -79,16 +85,16 @@
                   Learn how we process your data in our 
                   <a href="#"><u>Privacy Policy</u></a> and <a href="#"><u>Cookie Policy</u></a>.
                </p>
-                <br>
+               <br>
                <div class="form-group">
                     <input required
                         type="text" 
                         class="form-control"
                         name="username"
                         #name="ngModel"
-                        [class.is-invalid] = "name.invalid && name.touched" 
-                        [(ngModel)]="model.username"
-                        placeholder="UserName"
+                        [class.is-invalid] = "name.invalid && name.touched"  
+                        [(ngModel)]="model.username" 
+                        placeholder="UserName"      
                     >
                     <small class="text-danger" [class.d-none] = "name.valid || name.untouched">
                         Username is required
@@ -97,18 +103,16 @@
                
                <div class="form-group">
                     <input required
-                        type="password" 
+                        [type]="hide ? 'password' : 'text'" 
                         class="form-control input-placeholder"
                         name="password"
                         #password="ngModel"
-                        [class.is-invalid] = "password.invalid && password.touched"
                         [(ngModel)]="model.password"
                         placeholder="Password"
-                        id="inputPassword"
-                        [type]="hide ? 'password' : 'text'" 
+                        id="inputPassword" 
                     >
-                    <i *ngIf="!hide" class="fa fa-eye fa-2x placeholder" (click)="myFunction()"></i>
-                    <i *ngIf="hide" class="fa fa-eye-slash fa-2x placeholder" (click)="myFunction()"></i>
+                    <i *ngIf="!hide" class="fa fa-eye fa-lg placeholder" (click)="myFunction()"></i>
+                    <i *ngIf="hide" class="fa fa-eye-slash fa-lg placeholder" (click)="myFunction()"></i>
                    
                     <small class="text-danger" [class.d-none] = "password.valid || password.untouched">
                         Password is required
@@ -119,9 +123,12 @@
                             class="btn btn-success"  type="submit">
                         {{okBtnName}}
                     </button>
-                </div><br>   
-                <a href="#"><h5 class="text-muted"><u>Trouble Logging In?</u></h5></a>
-        </form>
+                </div><br>  
+                <div class="row">
+                    <a (click)="openSignInModel()"><h5 class="text-muted ml-4"><u>Create New Account</u></h5></a> 
+                    <a href="#"><h5 class="text-muted ml-5"><u>Trouble Logging In?</u></h5></a>
+                </div>
+            </form>
         </div>
     </div>        
 </div>

@@ -46,14 +46,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     validationError.push(desc.description);
                   }
                 }
-                //console.log(validationError);
                 throw validationError.flat();
-                
-                  
-                  //var desc = error.error[code];
-                  // console.log('selva');
-                  // console.log(desc.description);
-                  //this.toastr.error(desc.description);
               }
               else
               {
@@ -76,7 +69,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               break;
 
             default:
-              this.toastr.error('Something went wrong! Try After Sometimes');
+              this.toastr.error('Something went wrong! Please relaunch the application!!!');
               console.log(error);
               break;
           }

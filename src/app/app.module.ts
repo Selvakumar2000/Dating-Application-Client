@@ -45,6 +45,8 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AuthModalComponent } from './modals/auth-modal/auth-modal.component';
+import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
+import { DynamicModalComponent } from './dynamic-modal/dynamic-modal.component';
 
 
 
@@ -87,6 +89,8 @@ import { AuthModalComponent } from './modals/auth-modal/auth-modal.component';
     ConfirmDialogComponent,
     HomePageComponent,
     AuthModalComponent,
+    DynamicTextComponent,
+    DynamicModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,9 +4,17 @@
             <h1>{{member.username | titlecase}} Profile</h1>
         </div>
         <div class="col-md-4 back-button">
-            <button class="btn btn-info" routerLink='/members'>
-                Back To Main Page
+            <span style="padding-left: 75px;"></span>
+            <button class="about" routerLink='/members' routerLinkActive='active'>
+                <u>Back To Main Page</u>
             </button>
+            <button class="about" routerLink='/messages' routerLinkActive='active'>
+                <u>Messages</u>
+                <span class="position-absolute top-0 start-100 translate-middle
+                     badge rounded-pill bg-danger">
+                   99
+                </span>
+            </button> 
         </div>
         <br><br>
         <div class="col-4">

@@ -4,7 +4,6 @@ import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Group } from '../_models/group';
 import { Message } from '../_models/message';
 import { User } from '../_models/User';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
@@ -39,22 +38,11 @@ export class MessageService {
 
     this.hubConnection.on('NewMessage', message  =>{
       this.messageThread$.pipe(take(1)).subscribe(messages => {
-        this.messageThreadSource.next([...messages, message]);
+        //without mutating the array we use spread operator
+        this.messageThreadSource.next([...messages, message]); 
       })
     })
 
-    this.hubConnection.on('UpdatedGroup', (group:Group) => {
-      if(group.connections.some(x => x.username === otherUsername)) {
-        this.messageThread$.pipe(take(1)).subscribe(messages => {
-          messages.forEach(message => {
-            if(!message.dateRead) {
-              message.dateRead = new Date(Date.now());
-            }
-          })
-          this.messageThreadSource.next([...messages]);
-        })
-      }
-    })
   }
 
   stopHubConnection()
@@ -65,11 +53,9 @@ export class MessageService {
     }
   }
 
-  getMessages(pageNumber: number, pageSize: number, container: string | number | boolean)
+  getMessages(container: string | number | boolean)
   {
-    let params = getPaginationHeaders(pageNumber,pageSize);
-    params = params.append('Container',container);
-    return getPaginatedResult<Message[]>(this.baseUrl + 'messages', params, this.http);  
+    return this.http.get<Message[]>(this.baseUrl + 'messages?container=' + container);  
   }
 
   getMessageThread(username:string)

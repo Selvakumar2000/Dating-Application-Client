@@ -32,17 +32,14 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   constructor(public presenceService: PresenceService,public route: ActivatedRoute,
               public messageService: MessageService,public accountService: AccountService,
-              public router:Router,public memberService:MembersService,public toastr:ToastrService) { 
+              public memberService:MembersService,public toastr:ToastrService) { 
 
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
         this.user = user;
       });
-
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   ngOnInit(): void {
-
     this.route.data.subscribe(data =>{
       this.member = data.member;
     })
@@ -118,7 +115,6 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
   onTabActivated(data: TabDirective)
   {
-    console.log(data);
     this.activeTab = data;
     if(this.activeTab.heading === 'Messages' && this.messages.length === 0)
     {
