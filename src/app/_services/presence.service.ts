@@ -23,11 +23,9 @@ export class PresenceService {
 /*
 1.method to create the hub connection, so that when a user does connect to our application and they are
 authenticated, then we are create hub connection that's going to connect them to our presence hub.
-
 2.Pass user as a parameter, because we need to send up our user token(JWT token) when we make this connection
 we cannot use our jwt interceptor here, because it is no longer be a http request.These are using,
 websockets which has no support for an authentication header.
-
 3.Call the method when the user login or register 
 */
   createHubConnection(user: User) 
@@ -48,25 +46,27 @@ websockets which has no support for an authentication header.
     
 
     this.hubConnection.on('UserIsOnline', username => {
-      //this.toastr.info(username + 'has connected');
+      this.onlineUsers$.pipe(take(1)).subscribe(usernames => {
+      this.onlineUsersSource.next([...usernames, username])
       })
-
-
+    })
 
     this.hubConnection.on('UserIsOffline', username => {
-      this.toastr.warning(username + 'has disconnected');
+      this.onlineUsers$.pipe(take(1)).subscribe(usernames => {
+        this.onlineUsersSource.next([...usernames.filter(x => x !== username)])
+      })
     })
 
     this.hubConnection.on('GetOnlineUsers', (usernames:string[]) => {
       this.onlineUsersSource.next(usernames);
     })
 
-    // this.hubConnection.on('NewMessageReceived', ({username, knownAs})  => {
-    //    this.toastr.info('You have received a new message!')
-    //   // .onTap
-    //   // .pipe(take(1))
-    //   // .subscribe(() => this.router.navigateByUrl('/messages'));
-    // })
+    this.hubConnection.on('NewMessageReceived', ({username, knownAs})  => {
+      // this.toastr.info('You have received a new message!')
+      // .onTap
+      // .pipe(take(1))
+      // .subscribe(() => this.router.navigateByUrl('/messages'));
+    })
 
   }
 /*

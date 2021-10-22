@@ -11,8 +11,8 @@
             <button class="about" routerLink='/messages' routerLinkActive='active'>
                 <u>Messages</u>
                 <span class="position-absolute top-0 start-100 translate-middle
-                     badge rounded-pill bg-danger">
-                   99
+                             badge rounded-pill bg-danger">
+                    99
                 </span>
             </button> 
         </div>
@@ -42,7 +42,12 @@
                     </div>
                     <div>
                         <strong>Member LastActive:</strong>
-                        <p>{{member.lastActive | timeago}}</p>
+                        <p *ngIf="!(presenceService.onlineUsers$ | async).includes(member.username)">
+                            {{member.lastActive | timeago}}
+                        </p>
+                        <p *ngIf="(presenceService.onlineUsers$ | async).includes(member.username)" class="text-success">
+                            <strong>Connected Now</strong>
+                        </p>
                     </div>
                     <div>
                         <strong>Member since:</strong>

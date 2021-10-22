@@ -41,8 +41,8 @@
                         [(ngModel)] = "container" (click)= "loadMessages()">
                     <i class="fa fa-envelope-open"></i>Inbox
                     <span class="position-absolute top-0 start-100 translate-middle
-                                 badge rounded-pill bg-danger">
-                        99
+                                 badge rounded-pill bg-danger" *ngIf="count>0">
+                        {{count}}
                     </span>
                 </button>
                 <button class="btn btninfo ml-5" btnRadio = 'Outbox' 

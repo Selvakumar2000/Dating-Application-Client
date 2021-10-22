@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Member } from '../_models/member';
+import { Message } from '../_models/message';
 import { Pagination } from '../_models/pagination';
 import { AccountService } from '../_services/account.service';
 import { MembersService } from '../_services/members.service';
@@ -18,8 +19,13 @@ export class ListsComponent implements OnInit {
   predicate = 'liked';
   
 
+
   constructor(public memberService : MembersService,public accountService:AccountService,
-              public router : Router,public presenceService:PresenceService,public messageService:MessageService) { }
+              public router : Router,public presenceService:PresenceService,
+              public messageService:MessageService) {
+
+}
+
 
   ngOnInit(): void {
     this.loadLikes();

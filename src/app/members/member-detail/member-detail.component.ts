@@ -29,14 +29,18 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   messages:Message[]=[];
   user: User;
 
+  
 
   constructor(public presenceService: PresenceService,public route: ActivatedRoute,
               public messageService: MessageService,public accountService: AccountService,
-              public memberService:MembersService,public toastr:ToastrService) { 
+              public memberService:MembersService,public toastr:ToastrService,
+              ) { 
 
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
         this.user = user;
       });
+
+     
   }
 
   ngOnInit(): void {

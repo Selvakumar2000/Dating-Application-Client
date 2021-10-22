@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 import { AuthModalComponent } from '../modals/auth-modal/auth-modal.component';
+import { Message } from '../_models/message';
 import { AccountService } from '../_services/account.service';
 import { MessageService } from '../_services/message.service';
 import { PresenceService } from '../_services/presence.service';
@@ -21,11 +22,16 @@ export class HomePageComponent implements OnInit {
 
   username:string;
   
+
+
   constructor(public accountService: AccountService, public modalService: BsModalService,
-              public router: Router,public presenceService:PresenceService,public messageService:MessageService) {
+              public router: Router,public presenceService:PresenceService,public messageService:MessageService,
+              ) {
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
-          this.username=user.username;
-      });
+      this.username=user.username;
+    });
+
+     
   }
 
   ngOnInit(): void {

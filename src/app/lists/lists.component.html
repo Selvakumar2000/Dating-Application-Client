@@ -14,8 +14,8 @@
                         <button class="about" routerLink='/messages' routerLinkActive='active'>
                             Messages
                             <span class="position-absolute top-0 start-100 translate-middle
-                                 badge rounded-pill bg-danger">
-                                99
+                                  badge rounded-pill bg-danger" *ngIf="messageCountService.unreadCount>0">
+                                {{messageCountService.unreadCount}}
                             </span>
                         </button>
                         <button *appHasRole='["Admin","Moderator"]' class="about"

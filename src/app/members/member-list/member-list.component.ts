@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
+import { Message } from 'src/app/_models/message';
 import { Pagination } from 'src/app/_models/pagination';
 import { User } from 'src/app/_models/User';
 import { UserParams } from 'src/app/_models/userParams';
@@ -26,15 +27,21 @@ export class MemberListComponent implements OnInit {
   genderList = [{ value: 'male', display: 'Males' }, { value: 'female', display: 'Females' }];
   
   loading = false;
-
+  
   constructor(public memberService:MembersService, public accountService:AccountService,
               public router:Router,public modalService:BsModalService,
-              public presenceService: PresenceService,public messageService:MessageService) {
+              public presenceService: PresenceService,public messageService:MessageService,
+              ) {
+
     this.userParams = this.memberService.getUserParams();
+
     this.accountService.currentUser$.pipe(take(1)).subscribe(res => {
       this.userParams.gender = res.gender == 'male'? 'female':'male';
       this.username=res.username;
-    })
+    });
+
+   
+  
    }
 
    //filter modal

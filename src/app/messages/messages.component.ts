@@ -18,8 +18,13 @@ export class MessagesComponent implements OnInit {
   pagination : Pagination;
   container = 'Inbox';
   loading = false;
+  unreadCount=0;
+  count:any;
+
   constructor(public messageService:MessageService, public confirmService: ConfirmService,
-             public accountService:AccountService,public router:Router,public presenceService:PresenceService) { }
+             public accountService:AccountService,public router:Router,public presenceService:PresenceService
+             )
+   { }
 
   ngOnInit(): void {
     this.loadMessages();
@@ -32,10 +37,11 @@ export class MessagesComponent implements OnInit {
       response =>
       {
         this.messages = response;
+        this.count = this.messages.filter((obj) => obj.dateRead == null).length;
+        console.log(this.count);
         this.loading = false;
       }
     );
-   
   }
 
   deleteMessage(id:number)
