@@ -18,7 +18,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     //executes below,for every http requests
     this.busyService.busy();
     return next.handle(request).pipe(
-      delay(100),
+      delay(1000),
       finalize(()=>
       {
         this.busyService.idle();
