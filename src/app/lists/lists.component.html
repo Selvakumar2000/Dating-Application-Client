@@ -14,8 +14,8 @@
                         <button class="about" routerLink='/messages' routerLinkActive='active'>
                             Messages
                             <span class="position-absolute top-0 start-100 translate-middle
-                                  badge rounded-pill bg-danger" *ngIf="messageCountService.unreadCount>0">
-                                {{messageCountService.unreadCount}}
+                                  badge rounded-pill bg-danger">
+                                99
                             </span>
                         </button>
                         <button *appHasRole='["Admin","Moderator"]' class="about"
@@ -54,7 +54,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2" *ngFor = "let member of members">
-                <app-member-card [member] = "member"></app-member-card>
+                <app-member-card [name]="name" [member] = "member"></app-member-card>
             </div>
         </div>
     </div>   

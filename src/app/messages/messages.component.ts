@@ -38,7 +38,6 @@ export class MessagesComponent implements OnInit {
       {
         this.messages = response;
         this.count = this.messages.filter((obj) => obj.dateRead == null).length;
-        console.log(this.count);
         this.loading = false;
       }
     );

@@ -17,7 +17,7 @@ export class ListsComponent implements OnInit {
 
   members :Partial<Member[]>;//partial ->so each one of the properties inside the member is now optional
   predicate = 'liked';
-  
+  name=true;
 
 
   constructor(public memberService : MembersService,public accountService:AccountService,

@@ -12,6 +12,7 @@ import { PresenceService } from 'src/app/_services/presence.service';
 export class MemberCardComponent implements OnInit {
 
   @Input() member:Member;
+  @Input() name:boolean;
   
   constructor(public memberService: MembersService, public toastr: ToastrService,
               public presenceService: PresenceService) { }

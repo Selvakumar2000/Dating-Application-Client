@@ -47,6 +47,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AuthModalComponent } from './modals/auth-modal/auth-modal.component';
 import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
 import { DynamicModalComponent } from './dynamic-modal/dynamic-modal.component';
+import { RemovewhitespacesPipe } from './custompipe/removewhitespaces.pipe';
 
 
 
@@ -91,6 +92,7 @@ import { DynamicModalComponent } from './dynamic-modal/dynamic-modal.component';
     AuthModalComponent,
     DynamicTextComponent,
     DynamicModalComponent,
+    RemovewhitespacesPipe,
   ],
   imports: [
     BrowserModule,
