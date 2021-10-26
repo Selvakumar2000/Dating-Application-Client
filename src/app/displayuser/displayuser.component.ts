@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class DisplayuserComponent implements OnInit {
 
   //users:any;
+  isAvailable:boolean = false;
+  
   constructor(/*public http:HttpClient*/) { }
 
   ngOnInit(): void {

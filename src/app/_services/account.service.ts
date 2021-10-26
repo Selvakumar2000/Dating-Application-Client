@@ -67,4 +67,41 @@ export class AccountService {
   {
     return JSON.parse(atob(token.split('.')[1])); //access the payload
   }
+
+  //angular guard demo
+  isLoggedIn:boolean = false;
+
+   userLogin()
+   {
+     this.isLoggedIn=true;
+   }
+
+   userLogout()
+   {
+     this.isLoggedIn=false;
+   }
+
+   isAuthenticated()
+   {
+     return this.isLoggedIn;
+   }
+
+   //angular resolver demo
+   getUser(id:string)
+   {
+     if(id == '1')
+     {
+      return{
+        id: '1',
+        name: 'selva'
+      }
+     }
+     else
+     {
+      return{
+        id: '2',
+        name: 'suresh'
+      }
+     }
+   }
 }

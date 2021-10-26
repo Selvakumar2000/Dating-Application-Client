@@ -13,10 +13,27 @@ export class AppComponent {
   users:any;
   
   //componet interaction between appcomponent and angular-features component
-  name = "Selva"; 
-  message = "";
-  
-  constructor(public accountService:AccountService, public presenceService: PresenceService){}
+  name = "Selvakumar"; 
+  welcome(event:any)
+  {
+    alert(event);
+  }
+
+  //angular routing
+  id=1;
+
+  loginUser()
+  {
+    this.accountService.userLogin();
+  }
+
+  logoutUser()
+  {
+    this.accountService.userLogout();
+  }
+
+  constructor(public accountService:AccountService, 
+              public presenceService: PresenceService){}
 
   ngOnInit()
   {

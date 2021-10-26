@@ -27,7 +27,7 @@ export class AngularFeaturesComponent implements OnInit {
   @Output() childEvent = new EventEmitter();
   fireEvent()
   {
-    this.childEvent.emit("hiii "+ this.name);
+    this.childEvent.emit("Hi "+ this.name);
   }
 
   //pipe

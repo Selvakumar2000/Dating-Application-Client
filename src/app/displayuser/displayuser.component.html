@@ -16,3 +16,52 @@
         </table>
     </div>    
 </div> -->
+
+<h1 class="text-center">Directives In Angular</h1>
+<!--Builtin and Custom Attribute Directive can change the behaviour of html element-->
+<h1 [ngStyle]="{'background-color' : 'green'}">Hii Sharmi</h1>
+<h1 appRendererHighlight>Hii Sk</h1>
+<h1 appHighlightColor [defaultColor]="'blue'" [highlightColor]="'orange'">
+    Welcome To Angular12
+</h1>
+<h1 appCustomStyle>Hii Selvakumar</h1>
+
+<!--Host Listener ->Listen to the element in which resides the directive
+Required: If I hover my custom directive it should be in white colour
+          If I hover out of my custom directive it should be in yellow color
+-->
+
+<!--Pass Data To The Directives
+
+-->
+<br>
+
+<!--Structural Builtin and Custom Directive can add or remove html elements-->
+<button class="btn btn-primary" (click)="isAvailable = !isAvailable">
+<!--eventhough the value is changed here, but not reflected in view because of
+ngOnInit() -->
+        Toggle Condition
+</button>
+
+<div *appAlternativeIf="isAvailable">
+    <h2>This Condition Enables The Custom Directive</h2>
+</div>
+
+<!--Back End Conversion of structural directive
+<div *appAlternativeIf="isAvailable">
+    <h2>This Condition Enables The Custom Directive</h2>
+</div>  ============>
+
+<ng-template>
+    <div>
+        <h2>This Condition Enables The Custom Directive</h2>
+    </div>
+</ng-template>
+
+This also works
+<ng-template [ngIf]="isAvailable">
+    <div>
+        <h2>This Condition Enables The Custom Directive</h2>
+    </div>
+</ng-template>
+-->

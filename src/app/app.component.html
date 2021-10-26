@@ -10,12 +10,11 @@
 
 
 <!--Dating App Selectors-->
-
-<ngx-spinner bdColor = "rgb(253,38,125)" size = "medium" color = "#fff" type = "ball-fussion"
+ <!-- <ngx-spinner bdColor = "rgb(253,38,125)" size = "medium" color = "#fff" type = "ball-fussion"
              [fullScreen] = "true">
     <p style="color: white" > Loading... </p>
 </ngx-spinner>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
 
 
 
@@ -47,8 +46,65 @@
 
 <!-- <h1>{{message}}</h1>  -->
 <!-- $ variable will give the access to the argument that was sent from the event-->
-<!-- <app-angular-features (childEvent) = "message = $event" [parentData] = "name"></app-angular-features> -->
+<!-- <app-angular-features (childEvent) = "welcome($event)"
+                      [parentData] = "name">
+</app-angular-features> -->
 
 <!-- <app-tdf-forms></app-tdf-forms> -->
 <!-- <app-reactive-forms></app-reactive-forms> -->
 
+<!--Custom Directive-->
+<!-- <app-displayuser></app-displayuser> -->
+
+<!--Angular Routing--
+routerLinkActiveOptions ==>select the routerlink whenever the url matched exactly
+-->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-success" (click)="loginUser()">
+                LogIn
+            </button>
+            <button class="btn btn-warning ml-3" (click)="logoutUser()">
+                LogOut
+            </button>
+        </div>
+    </div>
+    
+    <br>
+
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='home' routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact : true}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='/users' routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact : true}">
+                        Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <!--This also works url will be ==> /categories/something/id-->
+                    <!-- <a [routerLink]="['/categories', 'something', 'id']">Categories -->
+                    <a class="nav-link" routerLink="/categories" routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact : true}">
+                        Categories
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

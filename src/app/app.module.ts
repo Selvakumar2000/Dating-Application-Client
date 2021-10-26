@@ -48,6 +48,14 @@ import { AuthModalComponent } from './modals/auth-modal/auth-modal.component';
 import { DynamicTextComponent } from './dynamic-text/dynamic-text.component';
 import { DynamicModalComponent } from './dynamic-modal/dynamic-modal.component';
 import { RemovewhitespacesPipe } from './custompipe/removewhitespaces.pipe';
+import { CustomStyleDirective } from './_directives/custom-style.directive';
+import { AlternativeIfDirective } from './_directives/alternative-if.directive';
+import { RendererHighlightDirective } from './_directives/renderer-highlight.directive';
+import { HighlightColorDirective } from './_directives/highlight-color.directive';
+import { UsersComponent } from './users/users.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { UserComponent } from './user/user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -93,6 +101,14 @@ import { RemovewhitespacesPipe } from './custompipe/removewhitespaces.pipe';
     DynamicTextComponent,
     DynamicModalComponent,
     RemovewhitespacesPipe,
+    CustomStyleDirective,
+    AlternativeIfDirective,
+    RendererHighlightDirective,
+    HighlightColorDirective,
+    UsersComponent,
+    CategoriesComponent,
+    UserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

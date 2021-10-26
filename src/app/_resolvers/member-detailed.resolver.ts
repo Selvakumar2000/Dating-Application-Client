@@ -17,6 +17,6 @@ export class MemberDetailedResolver implements Resolve<Member> {
   }
 }
 
-/* we can use resolver to go and get any type of data you want if you want to get your data before you
-constructs your template.
+/* we can use resolver to go and get any type of data you want if you want to get
+your data before you constructs your template.
 */

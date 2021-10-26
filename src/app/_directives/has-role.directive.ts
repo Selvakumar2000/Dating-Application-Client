@@ -11,9 +11,10 @@ export class HasRoleDirective implements OnInit{
     @Input() appHasRole: string[];
     user:User;
 
-
+  //TemplateRef --> Represents an embedded template that can be used to instantiate embedded views.
+  //                Convert that code into ng-template.(Render a template) 
   //ViewContainerRef --> Represents a container where one or more views can be attached to a component.
-  //TemplateRef --> Represents an embedded template that can be used to instantiate embedded views. 
+  //                     where I render the template
   constructor(public viewContainerRef:ViewContainerRef, public templateRef:TemplateRef<any>,
               public accountService:AccountService) {
         this.accountService.currentUser$.pipe(take(1)).subscribe(user =>{

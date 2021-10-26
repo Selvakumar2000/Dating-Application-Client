@@ -73,9 +73,10 @@ export class MembersService {
   {
     console.log(this.memberCache);
 //https://stackoverflow.com/questions/31048953/what-does-the-three-dots-notation-do-in-javascript
+//https://www.geeksforgeeks.org/javascript-spread-operator/
     const member = [...this.memberCache.values()] 
-      .reduce((arr,elem) => arr.concat(elem.result),[])
-      .find((member:Member) => member.username === username);
+                   .reduce((arr,elem) => arr.concat(elem.result),[])
+                   .find((member:Member) => member.username === username);
 
       if(member)
       {

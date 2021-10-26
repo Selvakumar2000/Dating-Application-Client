@@ -1,0 +1,45 @@
+<!-- <div>
+   <button class="btn btn-success" (click)="onCategories()">Go To Categories</button>
+</div>
+<br> -->
+<!--Capture the Queryparams-->
+<!--
+<div>
+    <button class="btn btn-info"
+            [routerLink]="['/users',1,'selva']"
+            [queryParams]="{page:1, name:'selva'}"
+            [fragment]="'loading'">
+        Get Selva Details
+    </button>
+</div> -->
+
+
+<div class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/users',1,'Selva']"
+           [queryParams]="{page:1, search:'selva'}">
+            Get Selva Details
+        </a>
+    </li>     
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/users',2,'Anand']"
+           [queryParams]="{page:2, search:'anand'}">
+            Get Anand Details
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/users',3,'Suresh']"
+           [queryParams]="{page:3, search:'suresh'}">
+            Get Suresh Details
+        </a>
+    </li>
+</div>
+<!--Preserving QueryParams:
+   If I navigate from one page to another page I wish to send the current queryparams
+to the next page-->
+<br>
+
+<div>
+<!--Load the child route component-->
+    <router-outlet></router-outlet>
+</div>

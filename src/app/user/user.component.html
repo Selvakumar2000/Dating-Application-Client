@@ -1,0 +1,28 @@
+<div>
+    <div>User Id : {{user.id}}</div>
+    <div>UseName : {{user.name}}</div>
+</div>
+
+<!-- 
+<div>
+<!--adding query paramters and fragments(only string allowed) in the url--> <!--
+    <a [routerLink]="['/users', 1, 'selvakumar']" 
+       [queryParams]="{page:1, search:'sk'}"
+       [fragment]="'load'">
+        Get Selva Details
+    </a>
+</div>
+
+<div>
+    <button class="btn btn-info" (click)="getDetails()">
+        Get Sk Details
+    </button>
+</div> -->
+
+<br> 
+
+<div>
+    <button class="btn btn-primary" (click)="onEditUser()">
+        Edit User
+    </button>
+</div>
