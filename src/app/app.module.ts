@@ -56,6 +56,7 @@ import { UsersComponent } from './users/users.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { UserComponent } from './user/user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 
@@ -109,6 +110,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     CategoriesComponent,
     UserComponent,
     EditUserComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,

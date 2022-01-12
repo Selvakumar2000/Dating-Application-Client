@@ -75,7 +75,7 @@ export class AuthModalComponent implements OnInit {
   { //all form control are derived from abstract control
     return (control:AbstractControl) =>
     {
-      return control?.value==control?.parent?.controls[matchTo].value?null:{isMatching:true};
+      return control?.value==control?.parent?.controls[matchTo].value?null:{misMatching:true};
     }
   }
 

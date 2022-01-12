@@ -32,7 +32,7 @@
         <span class="text-success">{{label}} must have atleast one uppercase letter</span><br>
         <span class="text-success">{{label}} must have atleast one lowercase letter</span><br>
     </div>
-    <div *ngIf="(ngControl.touched && ngControl.invalid) && (ngControl.control.errors?.isMatching)">
+    <div *ngIf="(ngControl.touched && ngControl.invalid) && (ngControl.control.errors?.misMatching)">
         <span class="error"> Password do not match</span>   
     </div>
 </div>
