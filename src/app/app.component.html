@@ -48,9 +48,10 @@
 
 <!-- <h1>{{message}}</h1>  -->
 <!-- $ variable will give the access to the argument that was sent from the event-->
-<!-- <app-angular-features (childEvent) = "welcome($event)"
+ <app-angular-features (childEvent) = "welcome($event)"
+ (childEvent2)="name2=$event"
                       [parentData] = "name">
-</app-angular-features> -->
+</app-angular-features> 
 
 <!-- <app-tdf-forms></app-tdf-forms> -->
 <!-- <app-reactive-forms></app-reactive-forms> -->

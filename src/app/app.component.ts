@@ -14,6 +14,7 @@ export class AppComponent {
   
   //componet interaction between appcomponent and angular-features component
   name = "Selvakumar"; 
+  name2: any;
   welcome(event:any)
   {
     alert(event);

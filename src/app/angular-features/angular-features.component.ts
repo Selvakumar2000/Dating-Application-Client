@@ -25,9 +25,12 @@ export class AngularFeaturesComponent implements OnInit {
 
   //componet interaction between appcomponent and angular-features component (child to parent)
   @Output() childEvent = new EventEmitter();
+  @Output() childEvent2 = new EventEmitter();
+  
   fireEvent()
   {
     this.childEvent.emit("Hi "+ this.name);
+    this.childEvent2.emit("selvakumar raman");
   }
 
   //pipe

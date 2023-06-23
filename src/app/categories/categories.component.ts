@@ -15,5 +15,4 @@ export class CategoriesComponent implements OnInit {
       console.log(data);
     })
   }
-
 }
